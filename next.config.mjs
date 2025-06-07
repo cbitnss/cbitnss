@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output:'export',
-    distDir: 'dist',
-    images:{
-        unoptimized:true,
-    }
+  output: 'export',
+  images: {
+    unoptimized: true, // disable image optimization for static export
+  },
+  basePath: '/cbitnss', // <-- update this!
+  assetPrefix: '/cbitnss', // <-- update this!
 };
 
-export default nextConfig;
+module.exports = nextConfig;

@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import {NextUIProvider} from '@nextui-org/react'
-import "./globals.css";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,10 +13,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata = {
-  title: "CBIT NSS",
-  description: "Not me but YOU!",
-};
+// export const metadata = {
+//   title: "CBIT NSS",
+//   description: "Not me but YOU!",
+// };
 
 export default function RootLayout({ children }) {
   return (
