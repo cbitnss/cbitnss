@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} */ 
 const nextConfig = {
   output: 'export',
   images: {
@@ -8,4 +8,4 @@ const nextConfig = {
   assetPrefix: '/cbitnss', // <-- update this!
 };
 
-module.exports = nextConfig;
+export default nextConfig;
