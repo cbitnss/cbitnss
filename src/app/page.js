@@ -8,7 +8,7 @@ import AnimatedGridBackground from "@/components/HeroBackground";
 import Footer from "@/components/Footer";
 export default function Home() {
   return (
-    <div>
+    <main>
       <App />
       <div className="lg:mt-16 hidden lg:block">
         <AnimatedGridBackground />
@@ -24,6 +24,6 @@ export default function Home() {
         <ExecutiveBoard />
       </section>
       <Footer />
-    </div>
+    </main>
   );
 }

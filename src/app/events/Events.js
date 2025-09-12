@@ -165,16 +165,23 @@ export default function Events() {
   return (
     <main className="container mx-auto px-4 py-8">
       {sortedYears.map(year => (
-        <div key={year} className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">{year} Events</h2>
-          {groupedEvents[year].map(event => (
-            <EventCard
-              key={event.id}
-              title={event.title}
-              description={event.description}
-              images={event.images}
-            />
-          ))}
+        <div key={year} className="mb-10">
+          <h2 className="text-3xl font-bold mb-6 text-center">{year} Events</h2>
+          <div className="grid gap-6">
+            {groupedEvents[year].map((event, idx) => (
+              <section
+                key={event.id}
+                className="event-card-section fade-in-up"
+                style={{ animationDelay: `${idx * 0.12}s` }}
+              >
+                <EventCard
+                  title={event.title}
+                  description={event.description}
+                  images={event.images}
+                />
+              </section>
+            ))}
+          </div>
         </div>
       ))}
     </main>
