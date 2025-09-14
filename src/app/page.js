@@ -5,7 +5,6 @@ import FeaturingSection from "@/components/FeaturingSection";
 import { ExecutiveBoard } from "@/components/ExecutiveBoard";
 import { VolunteerNAPTable } from "@/components/NAPTable";
 import AnimatedGridBackground from "@/components/HeroBackground";
-import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main>
@@ -23,7 +22,6 @@ export default function Home() {
       <section id="eb">
         <ExecutiveBoard />
       </section>
-      <Footer />
     </main>
   );
 }
