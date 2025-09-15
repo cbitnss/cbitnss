@@ -58,11 +58,15 @@ export default function App() {
         <NavbarItem className="hidden md:flex">
           <Link href="/events">Activities</Link>
         </NavbarItem>
+        
         <NavbarItem className="hidden md:flex">
           <Link href="/#nap">NAP</Link>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Link href="/team">Executive Board</Link>
+        </NavbarItem>
+        <NavbarItem className="hidden md:flex">
+          <Link href="/certificates">Certificates</Link>
         </NavbarItem>
         <NavbarItem>
           <Button auto size="small" color="success">
