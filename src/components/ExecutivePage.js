@@ -3,14 +3,19 @@ import Image from "next/image"
 
 const executives = [
   {
-    name: "Akhilesh Reddy",
+    name: "Nikhil ",
     title: "President",
+    imageUrl: "/akhilesh.png?height=200&width=150",
+  },
+  {
+    name: "Surya",
+    title: "Vice President",
     imageUrl: "/akhilesh.png?height=200&width=150",
   },
   {
     name: "Akhilesh Reddy",
     title: "President",
-    imageUrl: "/placeholder.svg?height=400&width=300",
+    imageUrl: "/akhilesh.png?height=200&width=150",
   },
   // Add more...
 ]
