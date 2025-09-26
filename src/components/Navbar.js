@@ -69,7 +69,14 @@ export default function App() {
           <Link href="/certificates">Certificates</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button auto size="small" color="success">
+          <Button auto size="small" 
+            css={{ 
+              background: 'var(--glow-color)', 
+              color: '#000', 
+              fontWeight: 'bold',
+              boxShadow: '0 0 10px var(--glow-color-alpha)'
+            }}
+          >
             Join Us
           </Button>
         </NavbarItem>

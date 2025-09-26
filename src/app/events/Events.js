@@ -1,4 +1,33 @@
-import { EventCard } from '@/components/EventCard'
+"use client";
+import React, { useEffect, useRef, useState } from 'react';
+import { EventCard } from '@/components/EventCard';
+
+// Intersection Observer Hook
+const useIntersectionObserver = (options) => {
+  const [entry, setEntry] = useState(null);
+  const [node, setNode] = useState(null);
+
+  const observer = useRef(null);
+
+  useEffect(() => {
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new window.IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setEntry(entry);
+      }
+    }, options);
+
+    const { current: currentObserver } = observer;
+    if (node) currentObserver.observe(node);
+
+    return () => currentObserver.disconnect();
+  }, [node, options]);
+
+  return [setNode, entry?.isIntersecting];
+};
+
+
 
 const eventsData = [
   {
@@ -152,39 +181,38 @@ const eventsData = [
 
 
 export default function Events() {
-  const groupedEvents = eventsData.reduce((acc, event) => {
-    if (!acc[event.year]) {
-      acc[event.year] = [];
-    }
-    acc[event.year].push(event);
-    return acc;
-  }, {});
-
-  const sortedYears = Object.keys(groupedEvents).sort((a, b) => b - a);
-
   return (
-    <main className="container mx-auto px-4 py-8">
-      {sortedYears.map(year => (
-        <div key={year} className="mb-10">
-          <h2 className="text-3xl font-bold mb-6 text-center">{year} Events</h2>
-          <div className="grid gap-6">
-            {groupedEvents[year].map((event, idx) => (
-              <section
-                key={event.id}
-                className="event-card-section fade-in-up"
-                style={{ animationDelay: `${idx * 0.12}s` }}
-              >
-                <EventCard
-                  title={event.title}
-                  description={event.description}
-                  images={event.images}
-                />
-              </section>
-            ))}
-          </div>
-        </div>
+    <main>
+      {eventsData.map((event, idx) => (
+        <EventSection key={event.id} event={event} isReversed={idx % 2 !== 0} />
       ))}
     </main>
-  )
+  );
+}
+
+function EventSection({ event, isReversed }) {
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
+
+  return (
+    <section
+      id={event.id} // Added ID for deep linking
+      ref={ref}
+      className={`flex items-center justify-center w-full py-16 px-4`}
+    >
+      <div className={`container mx-auto event-card-section animate-on-scroll ${isVisible ? 'is-visible' : ''}`}>
+        <div className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isReversed ? 'md:flex-row-reverse' : ''}`}>
+          <div className={`w-full md:w-1/2`}>
+            <div className="image-reveal">
+              <EventCard images={event.images} />
+            </div>
+          </div>
+          <div className={`w-full md:w-1/2 text-center md:text-left`}>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ color: 'var(--glow-color)' }}>{event.title}</h2>
+            <p className="text-base lg:text-lg text-gray-300">{event.description}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
