@@ -1,41 +1,36 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
 
-export function EventCard({ title, description, images }) {
+export function EventCard({ images }) {
   const [current, setCurrent] = useState(0);
-  const [hovered, setHovered] = useState(false);
   const timerRef = useRef(null);
 
   useEffect(() => {
-    if (hovered) {
-      timerRef.current = setInterval(() => {
-        setCurrent(prev => (prev + 1) % images.length);
-      }, 5000);
-    } else {
-      clearInterval(timerRef.current);
-    }
+    timerRef.current = setInterval(() => {
+      setCurrent(prev => (prev + 1) % images.length);
+    }, 3000); // Shortened interval for more dynamic feel
     return () => clearInterval(timerRef.current);
-  }, [hovered, images.length]);
+  }, [images.length]);
 
   return (
-    <div
-      className="flex flex-col items-center"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ width: '100%' }}
+    <div 
+      className="relative w-full aspect-square max-w-lg mx-auto overflow-hidden rounded-lg"
+      style={{ 
+        border: '1px solid var(--glow-color-alpha)',
+        boxShadow: '0 0 15px var(--glow-color-alpha)'
+      }}
     >
-      <div style={{ position: 'relative', width: '100%', maxWidth: 500, height: 300, overflow: 'hidden', borderRadius: '1rem' }}>
+      {images.map((image, index) => (
         <img
-          src={images[current].url}
-          alt={images[current].alt}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1rem', transition: 'opacity 0.5s' }}
+          key={index}
+          src={image.url}
+          alt={image.alt}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === current ? 'opacity-100' : 'opacity-0'}`}
         />
-        <div style={{ position: 'absolute', bottom: 10, right: 10, background: 'rgba(0,0,0,0.4)', color: '#fff', borderRadius: 8, padding: '2px 10px', fontSize: 14 }}>
-          {current + 1} / {images.length}
-        </div>
+      ))}
+      <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
+        {current + 1} / {images.length}
       </div>
-      <h3 className="text-xl font-bold mt-4 mb-2 text-center">{title}</h3>
-      <p className="text-base text-center mb-2" style={{ maxWidth: 600 }}>{description}</p>
     </div>
   );
 }

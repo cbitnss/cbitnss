@@ -3,101 +3,70 @@ import React, { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 
-const showcaseItems = [
+const executives = [
   {
-    id: 1,
-    title: "Akhilesh Reddy",
-    image: "/akhilesh.png?height=800&width=600",
-    logo: "President"
+    name: "Nikhil",
+    title: "President",
+    imageUrl: "/akhilesh.png",
   },
   {
-    id: 2,
-    title: "Udhit Pujiala",
-    image: "/akhilesh.png?height=800&width=600",
-    logo: "General Secretary"
+    name: "Surya",
+    title: "Vice President",
+    imageUrl: "/akhilesh.png",
   },
   {
-    id: 3,
-    title: "Ramireddy Golla",
-    image: "/akhilesh.png?height=800&width=600",
-    logo: "Head of External Affairs"
+    name: "Akhilesh Reddy",
+    title: "General Secretary",
+    imageUrl: "/akhilesh.png",
   },
   {
-    id: 4,
-    title: "Akhilesh Reddy",
-    image: "/akhilesh.png?height=800&width=600",
-    logo: "President"
+    name: "Person 4",
+    title: "Treasurer",
+    imageUrl: "/akhilesh.png",
+  },
+  {
+    name: "Person 5",
+    title: "Events Lead",
+    imageUrl: "/akhilesh.png",
+  },
+  {
+    name: "Person 6",
+    title: "PR Lead",
+    imageUrl: "/akhilesh.png",
   },
 ];
 
 export function ExecutiveBoard() {
-  const [translateX, setTranslateX] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const scroll = () => {
-      if (isPaused) return;
-      
-      setTranslateX((prev) => {
-        const newTranslate = prev - 1; // Adjust speed by changing this value
-        const containerWidth = container.scrollWidth / 2;
-        return newTranslate <= -containerWidth ? 0 : newTranslate;
-      });
-    };
-
-    const intervalId = setInterval(scroll, 30); // Adjust interval for smoother/faster scrolling
-
-    return () => clearInterval(intervalId);
-  }, [isPaused]);
-
-  // Double the items to create seamless infinite scroll
-  const allItems = [...showcaseItems, ...showcaseItems];
-
   return (
-    <div>
-    <div className="flex justify-center text-center w-full text-xl lg:text-3xl font-bold"> Executive Board 2024-2025</div>
-    <div className="w-full overflow-hidden bg-white text-white lg:mt-10">
-      <div className="relative py-8">
-        <div
-          ref={containerRef}
-          className="flex"
-          style={{
-            transform: `translateX(${translateX}px)`,
-            transition: translateX === 0 ? 'none' : 'transform 0.1s linear',
-          }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {allItems.map((item, index) => (
-            <Card
-              key={`${item.id}-${index}`}
-              className="flex-none mx-4 bg-transparent border-none relative overflow-hidden"
-              style={{ width: 'min(400px, 60vw)' }}
-            >
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover rounded-2xl"
-                  priority={index < 4}
-                />
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent">
-                  <div className="flex flex-col gap-2">
-                    <span className="text-sm font-medium text-white">{item.logo}</span>
-                    <h2 className="text-2xl font-semibold text-white">{item.title}</h2>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+    <div className="w-full">
+      <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-20 animate-on-scroll">
+        Executive Board 2024-2025
+      </h2>
+      <div className="flex overflow-x-auto space-x-8 pb-8 px-8 md:px-16 scrollbar-hide">
+        {executives.map((executive, index) => (
+          <div
+            key={index}
+            className="group relative flex-shrink-0 w-64 h-80 md:w-80 md:h-96 overflow-hidden rounded-lg shadow-lg"
+          >
+            <Image
+              src={executive.imageUrl}
+              alt={executive.name}
+              fill
+              className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h3 className="text-xl font-bold flex items-center">
+                {executive.name}
+                <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1">
+                  →
+                </span>
+              </h3>
+              <p className="text-md opacity-80">{executive.title}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
     </div>
   );
 }
