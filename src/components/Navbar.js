@@ -68,18 +68,11 @@ export default function App() {
         <NavbarItem className="hidden md:flex">
           <Link href="/certificates">Certificates</Link>
         </NavbarItem>
-        <NavbarItem>
-          <Button auto size="small" 
-            css={{ 
-              background: 'var(--glow-color)', 
-              color: '#000', 
-              fontWeight: 'bold',
-              boxShadow: '0 0 10px var(--glow-color-alpha)'
-            }}
-          >
-            Join Us
-          </Button>
+        <NavbarItem className="hidden md:flex">
+          <Link href="/emergency">Blood Support Hub</Link>
         </NavbarItem>
+
+        
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (
