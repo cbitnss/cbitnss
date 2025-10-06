@@ -9,9 +9,9 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link,
   Button,
 } from "@nextui-org/react";
+import Link from "next/link";
 
 export const AcmeLogo = () => {
   return (
@@ -59,7 +59,9 @@ export default function App() {
           <Link href="/events">Activities</Link>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <Link href="/#nap">NAP</Link>
+          <Link href="/naps">
+            <button className="your-nap-button-class">NAP</button>
+          </Link>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Link href="/team">Executive Board</Link>
