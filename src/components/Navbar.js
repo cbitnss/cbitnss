@@ -23,67 +23,74 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    { name: "Home", href: "/" },
+    { name: "Activities", href: "/events" },
+    { name: "Executive Board", href: "/team" },
+    { name: "Certificates", href: "/certificates" },
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="7xl" className="fixed">
+    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="7xl" className="fixed bg-black/50 backdrop-blur-md">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <Link href="/">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit pl-3">CBIT NSS</p>
-        </NavbarBrand>
+          <NavbarBrand>
+            <AcmeLogo />
+            <p className="font-bold text-inherit pl-3">CBIT NSS</p>
+          </NavbarBrand>
         </Link>
       </NavbarContent>
 
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden md:flex">
-          <Link href="/">Home</Link>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="/">
+            Home
+          </Link>
         </NavbarItem>
-
-        <NavbarItem className="hidden md:flex">
-          <Link href="/events">Activities</Link>
+        <NavbarItem>
+          <Link color="foreground" href="/events">
+            Activities
+          </Link>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Link href="/naps">
             <button className="your-nap-button-class">NAP</button>
           </Link>
         </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Link href="/team">Executive Board</Link>
-        </NavbarItem>
         <NavbarItem>
-          <Button auto size="small" color="success">
+          <Link color="foreground" href="/certificates">
+            Certificates
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Button auto size="small" 
+            css={{ 
+              background: 'var(--glow-color)', 
+              color: '#000', 
+              fontWeight: 'bold',
+              boxShadow: '0 0 10px var(--glow-color-alpha)'
+            }}
+          >
             Join Us
           </Button>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
-              className="w-full"
-              color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              href="#"
-              size="lg"
+              className="mobile-menu-item"
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
             >
-              {item}
+              <span>{item.name}</span>
+              <span>&gt;</span>
             </Link>
           </NavbarMenuItem>
         ))}

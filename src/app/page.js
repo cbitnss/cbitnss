@@ -3,27 +3,20 @@ import App from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturingSection from "@/components/FeaturingSection";
 import { ExecutiveBoard } from "@/components/ExecutiveBoard";
-import { VolunteerNAPTable } from "@/components/NAPTable";
-import AnimatedGridBackground from "@/components/HeroBackground";
-import Footer from "@/components/Footer";
+
 export default function Home() {
   return (
-    <main>
+    <main className="bg-black text-white">
       <App />
-      <div className="lg:mt-16 hidden lg:block">
-        <AnimatedGridBackground />
-      </div>
-      <div className="mt-14 lg:mt-0">
+      <section className="scroll-section">
         <HeroSection />
-      </div>
-      <FeaturingSection />
-      <section id="nap">
-        <VolunteerNAPTable />
       </section>
-      <section id="eb">
+      <section className="scroll-section flex items-center justify-center p-8 md:p-16">
+        <FeaturingSection />
+      </section>
+      <section id="eb" className="scroll-section flex flex-col justify-center overflow-hidden py-16">
         <ExecutiveBoard />
       </section>
-      <Footer />
     </main>
   );
 }

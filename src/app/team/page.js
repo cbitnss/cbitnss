@@ -1,15 +1,14 @@
-import React from 'react'
-import ExecutivePage from '@/components/ExecutivePage'
-import App from '@/components/Navbar'
-const ExecutiveTeam = () => {
+import React from 'react';
+import App from '@/components/Navbar';
+import ExecutivePage from '@/components/ExecutivePage';
+
+export default function TeamPage() {
   return (
     <div>
       <App />
-      <div className="lg:mt-16 lg:block">
-      <ExecutivePage />
+      <div className="pt-16">
+        <ExecutivePage />
       </div>
     </div>
-  )
+  );
 }
-
-export default ExecutiveTeam
