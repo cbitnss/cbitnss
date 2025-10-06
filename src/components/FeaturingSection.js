@@ -74,7 +74,7 @@ export default function FeaturingSection() {
 						style={{
 							opacity: 0,
 							animation: isVisible
-								? `slide-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.15}s forwards`
+								? `slide-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s forwards`
 								: "none",
 						}}
 					>
