@@ -1,5 +1,5 @@
 import Image from "next/image";
-import App from "@/components/Navbar";
+// import App from "@/components/Navbar"; // removed
 import HeroSection from "@/components/HeroSection";
 import FeaturingSection from "@/components/FeaturingSection";
 import { ExecutiveBoard } from "@/components/ExecutiveBoard";
@@ -7,7 +7,7 @@ import { ExecutiveBoard } from "@/components/ExecutiveBoard";
 export default function Home() {
   return (
     <main className="bg-black text-white">
-      <App />
+      {/* Navbar is provided by layout */}
       <section className="scroll-section">
         <HeroSection />
       </section>

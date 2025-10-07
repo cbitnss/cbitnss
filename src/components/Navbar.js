@@ -9,9 +9,9 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Link,
   Button,
 } from "@nextui-org/react";
-import Link from "next/link";
 
 export const AcmeLogo = () => {
   return (
@@ -25,8 +25,10 @@ export default function App() {
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Activities", href: "/events" },
-    { name: "Executive Board", href: "/team" },
     { name: "Certificates", href: "/certificates" },
+    { name: "NAP", href: "/nap" }, // changed to dedicated page
+    { name: "Executive Board", href: "/team" },
+    { name: "Blood Support Hub", href: "/emergency" },
   ];
 
   return (
@@ -55,30 +57,38 @@ export default function App() {
             Activities
           </Link>
         </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Link href="/naps">
-            <button className="your-nap-button-class">NAP</button>
-          </Link>
-        </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="/certificates">
             Certificates
           </Link>
         </NavbarItem>
-      </NavbarContent>
+      
 
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden md:flex">
-          <Link href="/emergency">Blood Support Hub</Link>
+      
+        <NavbarItem className="hidden sm:flex">
+          <Link color="foreground" href="/nap"> {/* NAP on desktop now points to /nap */}
+            NAP
+          </Link>
         </NavbarItem>
 
-        
-      </NavbarContent>
+        <NavbarItem className="hidden sm:flex">
+          <Link color="foreground" href="/team">
+            Executive Board
+          </Link>
+        </NavbarItem>
+
+        <NavbarItem className="hidden sm:flex">
+          <Link color="foreground" href="/emergency">
+            Blood Support Hub
+          </Link>
+        </NavbarItem>
+        </NavbarContent>
+
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
-              className="mobile-menu-item"
+              className="mobile-menu-item text-white"
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
             >
