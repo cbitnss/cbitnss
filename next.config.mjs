@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? 'cbitnss' : '',
+  basePath: isProd ? '/cbitnss' : '',
 
   assetPrefix: isProd ? 'cbitnss' : '',
 images: {

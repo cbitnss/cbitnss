@@ -63,7 +63,7 @@ export function ResponsiveCard({ title, description, images }) {
 const HeroSection = () => {
   const teamImages = [
     {
-      url: "/image.png?height=800&width=1200&text=Team+Photo+1",
+      url: "/arang1.jpg?height=800&width=1200&text=Team+Photo+1",
       alt: "Our team gathered together, smiling and ready to tackle any challenge",
     },
     {
