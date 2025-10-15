@@ -1,110 +1,30 @@
+
 "use client";
 import React from "react";
-import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import data from "../data/main.json";
+import Silk from "./Silk";
 
-export function ResponsiveCard({ title, description, images }) {
+export default function HeroSection() {
   return (
-    <div className="bg-transparent rounded-3xl overflow-hidden max-w-7xl mx-auto">
-      <div className="flex flex-col-reverse lg:flex-row">
-        <div className="p-6 lg:w-2/5 flex items-center flex-col justify-center space-y-4">
-          <Image
-            className="hidden lg:block"
-            src={"/logo.svg"}
-            height={150}
-            width={150}
-            alt="NSS Logo"
-          />
-          <h2 className="text-2xl lg:text-3xl text-center font-extrabold">
-            {title}
-          </h2>
-          <p className="text-gray-600 text-sm lg:text-base text-center">
-            {description}
+    <section className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Silk background */}
+      <div className="absolute inset-0 z-0">
+        <Silk />
+      </div>
+
+      {/* Hero content */}
+      <div className="relative z-10 flex items-center justify-center h-full text-center">
+        <div className="px-4">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">
+            CBIT NSS
+          </h1>
+          <p className="mt-4 text-lg md:text-2xl text-gray-200">
+            Not Me, But You.
           </p>
         </div>
-        <div className="lg:w-3/5 relative m-2 lg:m-10">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {images.map((image, index) => (
-                <CarouselItem key={index}>
-                  <Image
-                    src={image.url}
-                    alt={image.alt}
-                    width={1200}
-                    height={800}
-                    className="w-full h-80 lg:h-[500px] object-cover rounded-3xl"
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2" />
-            <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2" />
-          </Carousel>
-          {/* <Image
-            src={imageUrl}
-            alt={imageAlt}
-            width={1200}
-            height={800}
-            className="w-full h-80 lg:h-[500px] object-cover rounded-3xl"
-          /> */}
-        </div>
       </div>
-    </div>
+
+      {/* Optional dark overlay for contrast */}
+      <div className="absolute inset-0 bg-black/30 z-[5] pointer-events-none" />
+    </section>
   );
 }
-
-const HeroSection = () => {
-  const teamImages = [
-    {
-      url: "/arang1.jpg?height=800&width=1200&text=Team+Photo+1",
-      alt: "Our team gathered together, smiling and ready to tackle any challenge",
-    },
-    {
-      url: "/image.png?height=800&width=1200&text=Team+Photo+2",
-      alt: "Team members collaborating on a project",
-    },
-    {
-      url: "/image.png?height=800&width=1200&text=Team+Photo+3",
-      alt: "Team building activity outdoors",
-    },
-  ];
-
-  return (
-    <div className="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
-        style={{
-          objectFit: "cover",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <source src="/cbit-drone.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-      <div className="relative z-20 px-4">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
-          CBIT NSS
-        </h1>
-        <p className="text-lg md:text-xl lg:text-2xl text-gray-200">
-          Not Me, But You.
-        </p>
-      </div>
-    </div>
-  );
-};
-
-export default HeroSection;
