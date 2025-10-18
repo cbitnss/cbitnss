@@ -195,20 +195,39 @@ function EventSection({ event, isReversed }) {
 
   return (
     <section
-      id={event.id} // Added ID for deep linking
+      id={event.id}
       ref={ref}
-      className={`flex items-center justify-center w-full py-16 px-4`}
+      className={`flex items-center justify-center w-full py-24 px-4 relative overflow-hidden`}
     >
-      <div className={`container mx-auto event-card-section animate-on-scroll ${isVisible ? 'is-visible' : ''}`}>
-        <div className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isReversed ? 'md:flex-row-reverse' : ''}`}>
-          <div className={`w-full md:w-1/2`}>
-            <div className="image-reveal">
-              <EventCard images={event.images} />
+      <div 
+        className={`container mx-auto transition-all duration-1000 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] 
+          ${isVisible ? 'opacity-100 transform-none' : 'opacity-0 scale-95'}`}
+      >
+        <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-6 md:p-16
+          shadow-[0_8px_32px_rgba(0,0,0,0.2),0_0_20px_rgba(242,34,50,0.15)]
+          border border-white/10 hover:border-white/20 transition-colors">
+          <div className={`flex flex-col md:flex-row items-stretch gap-8 md:gap-16 ${isReversed ? 'md:flex-row-reverse' : ''}`}>
+            {/* Image Half */}
+            <div className={`w-full md:w-1/2 flex items-center justify-center transition-all duration-1000 delay-300 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]
+              ${isVisible ? 'opacity-100 transform-none' : 'opacity-0 scale-[0.98]'}`}>
+              <div className="w-full max-w-md">
+                <EventCard images={event.images} />
+              </div>
             </div>
-          </div>
-          <div className={`w-full md:w-1/2 text-center md:text-left`}>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ color: 'var(--glow-color)' }}>{event.title}</h2>
-            <p className="text-base lg:text-lg text-gray-300">{event.description}</p>
+
+            {/* Text Half */}
+            <div className={`w-full md:w-1/2 flex items-center justify-center transition-all duration-1000 delay-500 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]
+              ${isVisible ? 'opacity-100 transform-none' : 'opacity-0 translate-x-0'}`}>
+              <div className="space-y-8 w-full max-w-lg px-4 md:px-8">
+                <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent pb-2">
+                  {event.title}
+                </h2>
+                <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+                  {event.description}
+                </p>
+                <div className="h-1 w-24 bg-gradient-to-r from-[#F22232] to-[#F22232]/50 rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

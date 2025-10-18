@@ -1,7 +1,6 @@
-
 "use client";
 import React from "react";
-import Silk from "./Silk";
+import Silk from "./Silk"; // ✅ correct import (file name: Silk.js)
 
 export default function HeroSection() {
   return (
@@ -11,20 +10,28 @@ export default function HeroSection() {
         <Silk />
       </div>
 
-      {/* Hero content */}
-      <div className="relative z-10 flex items-center justify-center h-full text-center">
-        <div className="px-4">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">
-            CBIT NSS
-          </h1>
-          <p className="mt-4 text-lg md:text-2xl text-gray-200">
-            Not Me, But You.
-          </p>
-        </div>
-      </div>
+      {/* Optional dark overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/40 z-[5]" />
 
-      {/* Optional dark overlay for contrast */}
-      <div className="absolute inset-0 bg-black/30 z-[5] pointer-events-none" />
+      {/* Hero content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
+        {/* NSS Logo */}
+        <img
+          src="/nsslogo.png"
+          alt="CBIT NSS Logo"
+          className="w-48 h-48 md:w-64 md:h-64 mb-8 rounded-full shadow-lg mx-auto"
+        />
+
+        {/* Main heading */}
+        <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">
+          CBIT NSS
+        </h1>
+
+        {/* Tagline */}
+        <p className="mt-4 text-lg md:text-2xl text-gray-200">
+          Not Me, But You.
+        </p>
+      </div>
     </section>
   );
 }

@@ -1,7 +1,8 @@
 import localFont from "next/font/local";
 import {NextUIProvider} from '@nextui-org/react'
 import './globals.css';
-import App from "@/components/Navbar"; // added
+import App from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,13 +24,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <NextUIProvider>
           <App /> {/* navbar rendered here globally */}
-          <div className="pt-16"> {/* offset for fixed navbar */}
+          <main className="flex-1 pt-16"> {/* offset for fixed navbar */}
             {children}
-          </div>
+          </main>
+          <Footer />
         </NextUIProvider>
       </body>
     </html>

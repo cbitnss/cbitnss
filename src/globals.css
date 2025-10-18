@@ -1,14 +1,17 @@
-/* This file must be empty to prevent style conflicts. */
-body,
-main,
-.container,
-section {
-  background: #00c4cc !important;
-  min-height: 100vh;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #F22232;
+  --primary-dark: #d41e2d;
+  --background: #000000;
 }
 
 body {
-  background: #00c4cc !important;
+  background: var(--background);
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 .fade-in-up {

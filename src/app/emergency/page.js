@@ -1,584 +1,629 @@
 "use client";
+
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
-export default function EmergencyServices() {
-  // Tab state management
-  const [activeTab, setActiveTab] = useState("become-donor");
+export default function EmergencyServicesMain() {
+  const [openFAQ, setOpenFAQ] = useState(null);
 
-  // ========== BECOME A DONOR FORM STATE ==========
-  const [donorForm, setDonorForm] = useState({
-    "Donor Name": "",
-    "Blood Group": "",
-    "Contact Number": "",
-    "Email Address": "",
-    "Gender": "",
-    "Age": "",
-    "Date of Last Donation": "",
-    "Availability Status": "",
-    "Medical Conditions": "",
-    "Never Donated": false,
-    "Forgot When Donated": false,
-  });
-  const [isDonorSubmitting, setIsDonorSubmitting] = useState(false);
-
-  // ========== REQUEST DONOR FORM STATE ==========
-  const [requestForm, setRequestForm] = useState({
-    "Patient Name": "",
-    "Blood Group Required": "",
-    "Units Required": "",
-    "Required By Date": "",
-    "Required By Time": "",
-    "Hospital Name": "",
-    "Hospital Location": "",
-    "Contact Person Name": "",
-    "Contact Number": "",
-    "Email Address": "",
-    "Urgency Level": "",
-    "Additional Notes": "",
-    "Live Donor Required": false,
-  });
-  const [isRequestSubmitting, setIsRequestSubmitting] = useState(false);
-
-  // Shared data
-  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  const urgencyLevels = ["Critical (Within 2 hours)", "Urgent (Within 6 hours)", "Moderate (Within 24 hours)", "Planned (Within 3 days)"];
-
-  // ========== BECOME A DONOR HANDLERS ==========
-  const handleDonorChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setDonorForm((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const handleDonorSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!donorForm.Age || parseInt(donorForm.Age) < 18) {
-      alert("You must be at least 18 years old to donate blood.");
-      return;
+  const faqs = [
+    {
+      question: "Who can donate blood?",
+      answer: "Anyone between 18-65 years, weighing at least 45 kg, with a BMI between 18.5-25, and in good health can donate blood. You must not have donated in the last 3 months."
+    },
+    {
+      question: "How often can I donate blood?",
+      answer: "You can donate whole blood every 3 months (90 days). This gap allows your body to replenish the donated blood cells and maintain healthy iron levels."
+    },
+    {
+      question: "Is blood donation safe?",
+      answer: "Yes, blood donation is completely safe. Sterile, disposable equipment is used for each donor, and the process is supervised by trained medical professionals."
+    },
+    {
+      question: "How long does the donation process take?",
+      answer: "The entire process takes about 30-45 minutes, including registration, health screening, donation (10-15 minutes), and refreshments. The actual blood collection takes only 10-15 minutes."
+    },
+    {
+      question: "What should I do before donating blood?",
+      answer: "Get a good night's sleep, eat a healthy meal 3 hours before donation, drink plenty of water, avoid fatty foods, and bring a valid ID proof."
+    },
+    {
+      question: "How quickly can I get a donor for an emergency request?",
+      answer: "Our emergency response team works 24/7 to connect you with donors. In critical cases, we aim to respond within 2-6 hours depending on blood type availability and location."
+    },
+    {
+      question: "What information do I need to request blood?",
+      answer: "You'll need patient details, required blood group, number of units, urgency level, hospital information, and contact details. Our team will guide you through the process."
+    },
+    {
+      question: "Do you charge for blood donation services?",
+      answer: "No, NSS CBIT provides this service completely free of charge. However, hospital charges for blood processing and storage may apply."
     }
+  ];
 
-    if (!donorForm.Gender) {
-      alert("Please select your gender.");
-      return;
+  const impactStats = [
+    {
+      number: "650+",
+      label: "Units Collected Last Year",
+      icon: "💉"
+    },
+    {
+      number: "50+",
+      label: "Emergency Requests Fulfilled",
+      icon: "🚨"
+    },
+    {
+      number: "350+",
+      label: "Active Registered Donors",
+      icon: "❤️"
     }
-
-    setIsDonorSubmitting(true);
-
-    try {
-      const formData = new FormData();
-
-      Object.keys(donorForm).forEach((key) => {
-        let value = donorForm[key];
-        if (key === "Date of Last Donation" && donorForm["Never Donated"]) {
-          value = "Never Donated";
-        }
-        if (key === "Date of Last Donation" && donorForm["Forgot When Donated"]) {
-          value = "Forgot When Donated";
-        }
-        formData.append(key, value);
-      });
-
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbx7i6OCBliYZrGjAtmAr-kylbmWAdghv7bQx7wLPHd6EM6-pVhnLTF7hjZOJMWzms8l0Q/exec",
-        {
-          method: "POST",
-          body: formData,
-          mode: "no-cors",
-        }
-      );
-
-      alert("Thank you for registering as a donor!");
-      setDonorForm({
-        "Donor Name": "",
-        "Blood Group": "",
-        "Contact Number": "",
-        "Email Address": "",
-        "Date of Last Donation": "",
-        "Availability Status": "",
-        "Medical Conditions": "",
-        "Gender": "",
-        "Age": "",
-        "Never Donated": false,
-        "Forgot When Donated": false,
-      });
-    } catch (error) {
-      console.error("Error sending data:", error);
-      alert("Error sending data: " + error.message);
-    } finally {
-      setIsDonorSubmitting(false);
-    }
-  };
-
-  // ========== REQUEST DONOR HANDLERS ==========
-  const handleRequestChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setRequestForm((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const sendEmail = async () => {
-    try {
-      const emailParams = {
-        to_name: "Emergency Team",
-        patient_name: requestForm["Patient Name"],
-        blood_group: requestForm["Blood Group Required"],
-        units: requestForm["Units Required"],
-        urgency: requestForm["Urgency Level"],
-        required_date: requestForm["Required By Date"],
-        required_time: requestForm["Required By Time"],
-        hospital: requestForm["Hospital Name"],
-        location: requestForm["Hospital Location"],
-        contact_person: requestForm["Contact Person Name"],
-        contact_number: requestForm["Contact Number"],
-        contact_email: requestForm["Email Address"],
-        notes: requestForm["Additional Notes"] || "None",
-        live_donor: requestForm["Live Donor Required"] ? "YES - Live Donor Required" : "NO - Blood Bank Acceptable",
-        reply_to: requestForm["Email Address"]
-      };
-
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: 'service_9pb3aok',
-          template_id: 'template_oby1f18',
-          user_id: 'SPk97mei6nDi8GNAs',
-          template_params: emailParams
-        })
-      });
-
-      const responseText = await response.text();
-      console.log('EmailJS Response:', responseText);
-
-      if (response.ok || response.status === 200) {
-        return true;
-      } else {
-        console.error('EmailJS Error Response:', responseText);
-        throw new Error(`Failed to send email: ${responseText}`);
-      }
-    } catch (error) {
-      console.error('Email sending error:', error);
-      throw error;
-    }
-  };
-
-  const handleRequestSubmit = async (e) => {
-    e.preventDefault();
-    setIsRequestSubmitting(true);
-
-    try {
-      await sendEmail();
-      alert("Blood request submitted successfully! The emergency team has been notified via email.");
-      
-      setRequestForm({
-        "Patient Name": "",
-        "Blood Group Required": "",
-        "Units Required": "",
-        "Required By Date": "",
-        "Required By Time": "",
-        "Hospital Name": "",
-        "Hospital Location": "",
-        "Contact Person Name": "",
-        "Contact Number": "",
-        "Email Address": "",
-        "Urgency Level": "",
-        "Additional Notes": "",
-        "Live Donor Required": false,
-      });
-    } catch (error) {
-      console.error("Error submitting request:", error);
-      alert(`Error sending email notification: ${error.message}. Please try again or contact support directly.`);
-    } finally {
-      setIsRequestSubmitting(false);
-    }
-  };
+  ];
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Saving Life Starts Here..</h1>
-      
-      {/* ========== TAB NAVIGATION ========== */}
-      <div className="flex border-b border-gray-300 mb-6">
-        <button
-          onClick={() => setActiveTab("become-donor")}
-          className={`flex-1 px-6 py-3 font-semibold transition-colors ${
-            activeTab === "become-donor"
-              ? "border-b-2 border-blue-600 text-blue-600"
-              : "text-gray-600 hover:text-blue-600"
-          }`}
-        >
-          Become a Donor
-        </button>
-        <button
-          onClick={() => setActiveTab("request-donor")}
-          className={`flex-1 px-6 py-3 font-semibold transition-colors ${
-            activeTab === "request-donor"
-              ? "border-b-2 border-red-600 text-red-600"
-              : "text-gray-600 hover:text-red-600"
-          }`}
-        >
-          Request a Donor
-        </button>
+    <>
+      <style jsx global>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            max-height: 0;
+          }
+          to {
+            opacity: 1;
+            max-height: 500px;
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+
+        .emergency-page {
+          background: linear-gradient(135deg, #0a0a1f 0%, #1a1a3f 50%, #0a0a1f 100%);
+          min-height: 100vh;
+          color: white;
+        }
+
+        .hero-section {
+          padding: 100px 20px 80px;
+          text-align: center;
+          background: linear-gradient(180deg, rgba(242, 34, 50, 0.1) 0%, transparent 100%);
+        }
+
+        .hero-title {
+          font-size: 3.5rem;
+          font-weight: 800;
+          margin-bottom: 24px;
+          background: linear-gradient(135deg, #F22232, #ffffff);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+          font-size: 1.5rem;
+          color: #d1d5db;
+          max-width: 900px;
+          margin: 0 auto 50px;
+          line-height: 1.8;
+          animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+          display: flex;
+          gap: 30px;
+          justify-content: center;
+          flex-wrap: wrap;
+          animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-button {
+          padding: 18px 45px;
+          font-size: 1.2rem;
+          font-weight: 700;
+          border-radius: 50px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          display: inline-block;
+        }
+
+        .cta-button::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.2);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+          width: 300px;
+          height: 300px;
+        }
+
+        .cta-button span {
+          position: relative;
+          z-index: 1;
+        }
+
+        .donate-button {
+          background: linear-gradient(135deg, #F22232, #dc2626);
+          color: white;
+          box-shadow: 0 10px 30px rgba(242, 34, 50, 0.4);
+        }
+
+        .donate-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 40px rgba(242, 34, 50, 0.6);
+        }
+
+        .request-button {
+          background: linear-gradient(135deg, #2E348C, #1e40af);
+          color: white;
+          box-shadow: 0 10px 30px rgba(46, 52, 140, 0.4);
+        }
+
+        .request-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 40px rgba(46, 52, 140, 0.6);
+        }
+
+        .impact-section {
+          padding: 80px 20px;
+          text-align: center;
+        }
+
+        .section-title {
+          font-size: 3rem;
+          font-weight: 800;
+          margin-bottom: 20px;
+          color: #F22232;
+        }
+
+        .section-description {
+          font-size: 1.2rem;
+          color: #d1d5db;
+          max-width: 900px;
+          margin: 0 auto 60px;
+          line-height: 1.8;
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 40px;
+          max-width: 1200px;
+          margin: 0 auto 60px;
+        }
+
+        .stat-card {
+          background: rgba(255, 255, 255, 0.05);
+          padding: 40px 30px;
+          border-radius: 20px;
+          border: 2px solid rgba(242, 34, 50, 0.3);
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+          transform: translateY(-10px);
+          border-color: #F22232;
+          box-shadow: 0 20px 40px rgba(242, 34, 50, 0.3);
+          animation: pulse 1s ease-in-out infinite;
+        }
+
+        .stat-icon {
+          font-size: 4rem;
+          margin-bottom: 20px;
+        }
+
+        .stat-number {
+          font-size: 3rem;
+          font-weight: 800;
+          color: #F22232;
+          margin-bottom: 10px;
+        }
+
+        .stat-label {
+          font-size: 1.1rem;
+          color: #d1d5db;
+        }
+
+        .images-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 30px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .impact-image {
+          position: relative;
+          height: 300px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.4s ease;
+        }
+
+        .impact-image:hover {
+          transform: scale(1.05);
+          border-color: #F22232;
+          box-shadow: 0 20px 40px rgba(242, 34, 50, 0.4);
+        }
+
+        .faq-section {
+          padding: 80px 20px;
+          background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-container {
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .faq-item {
+          margin-bottom: 20px;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          border-radius: 15px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+          border-color: rgba(242, 34, 50, 0.5);
+        }
+
+        .faq-question {
+          padding: 25px 30px;
+          background: rgba(255, 255, 255, 0.05);
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 1.2rem;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+          background: rgba(242, 34, 50, 0.1);
+        }
+
+        .faq-icon {
+          font-size: 1.5rem;
+          transition: transform 0.3s ease;
+        }
+
+        .faq-icon.open {
+          transform: rotate(180deg);
+        }
+
+        .faq-answer {
+          padding: 0 30px;
+          max-height: 0;
+          overflow: hidden;
+          transition: all 0.4s ease;
+          background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-answer.open {
+          padding: 25px 30px;
+          max-height: 500px;
+          animation: slideDown 0.4s ease;
+        }
+
+        .faq-answer p {
+          color: #d1d5db;
+          line-height: 1.8;
+          font-size: 1.05rem;
+        }
+
+        .collaboration-section {
+          padding: 80px 20px;
+          text-align: center;
+        }
+
+        .collab-card {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 50px;
+          background: linear-gradient(135deg, rgba(242, 34, 50, 0.1), rgba(46, 52, 140, 0.1));
+          border-radius: 25px;
+          border: 2px solid rgba(242, 34, 50, 0.3);
+          backdrop-filter: blur(10px);
+        }
+
+        .collab-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 20px;
+          color: #F22232;
+        }
+
+        .collab-description {
+          font-size: 1.2rem;
+          color: #d1d5db;
+          line-height: 1.8;
+        }
+
+        .helpline-section {
+          padding: 80px 20px;
+          text-align: center;
+          background: rgba(242, 34, 50, 0.05);
+        }
+
+        .helpline-card {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 40px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 20px;
+          border: 2px solid #F22232;
+          backdrop-filter: blur(10px);
+        }
+
+        .helpline-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 30px;
+          color: #F22232;
+        }
+
+        .helpline-contact {
+          margin-bottom: 20px;
+        }
+
+        .contact-name {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+
+        .contact-number {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #F22232;
+          letter-spacing: 1px;
+        }
+
+        .emergency-badge {
+          display: inline-block;
+          padding: 10px 20px;
+          background: #F22232;
+          border-radius: 50px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 2.5rem;
+          }
+
+          .hero-subtitle {
+            font-size: 1.2rem;
+          }
+
+          .section-title {
+            font-size: 2.2rem;
+          }
+
+          .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .cta-button {
+            width: 100%;
+            max-width: 300px;
+          }
+        }
+      `}</style>
+
+      <div className="emergency-page">
+        {/* Hero Section */}
+        <section className="hero-section">
+          <h1 className="hero-title">
+            Be a Life Saver – Donate Blood Today!
+          </h1>
+          <p className="hero-subtitle">
+            Welcome to the Blood Donation & Emergency Response Platform of CBIT NSS. 
+            Your generosity can save lives in critical moments. Join our community of heroes 
+            and make a lasting impact through the gift of blood donation.
+          </p>
+          <div className="cta-buttons">
+            <Link href="/emergency/become-donor" className="cta-button donate-button">
+              <span>become Blood-donor</span>
+            </Link>
+            <Link href="/emergency/request-donor" className="cta-button request-button">
+              <span>Request Blood donor</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* Impact Section */}
+        <section className="impact-section">
+          <h2 className="section-title">Our Life-Saving Impact</h2>
+          <p className="section-description">
+            At CBIT NSS, we take pride in our commitment to saving lives through regular blood donation 
+            drives and emergency response services. Last year alone, our dedicated volunteers and donors 
+            came together to create a remarkable impact in our community.
+          </p>
+
+          <div className="stats-grid">
+            {impactStats.map((stat, index) => (
+              <div key={index} className="stat-card">
+                <div className="stat-icon">{stat.icon}</div>
+                <div className="stat-number">{stat.number}</div>
+                <div className="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="images-grid">
+            <div className="impact-image">
+              <Image
+                src="/bd1.jpg"
+                alt="Blood Donation Camp"
+                fill
+                style={{ objectFit: 'cover' }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.style.background = 'linear-gradient(135deg, #F22232, #2E348C)';
+                  e.target.parentElement.style.display = 'flex';
+                  e.target.parentElement.style.alignItems = 'center';
+                  e.target.parentElement.style.justifyContent = 'center';
+                  const text = document.createElement('div');
+                  text.textContent = 'Blood Donation Camp';
+                  text.style.fontSize = '1.5rem';
+                  text.style.fontWeight = '700';
+                  text.style.textAlign = 'center';
+                  e.target.parentElement.appendChild(text);
+                }}
+              />
+            </div>
+            <div className="impact-image">
+              <Image
+                src="/bd2.jpg"
+                alt="Emergency Response Team"
+                fill
+                style={{ objectFit: 'cover' }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.style.background = 'linear-gradient(135deg, #2E348C, #F22232)';
+                  e.target.parentElement.style.display = 'flex';
+                  e.target.parentElement.style.alignItems = 'center';
+                  e.target.parentElement.style.justifyContent = 'center';
+                  const text = document.createElement('div');
+                  text.textContent = 'Emergency Response';
+                  text.style.fontSize = '1.5rem';
+                  text.style.fontWeight = '700';
+                  text.style.textAlign = 'center';
+                  e.target.parentElement.appendChild(text);
+                }}
+              />
+            </div>
+            <div className="impact-image">
+              <Image
+                src="/bd3.jpg"
+                alt="Donor Appreciation"
+                fill
+                style={{ objectFit: 'cover' }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.style.background = 'linear-gradient(135deg, #F22232, #2E348C)';
+                  e.target.parentElement.style.display = 'flex';
+                  e.target.parentElement.style.alignItems = 'center';
+                  e.target.parentElement.style.justifyContent = 'center';
+                  const text = document.createElement('div');
+                  text.textContent = 'Donor Appreciation';
+                  text.style.fontSize = '1.5rem';
+                  text.style.fontWeight = '700';
+                  text.style.textAlign = 'center';
+                  e.target.parentElement.appendChild(text);
+                }}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="faq-section">
+          <h2 className="section-title text-center mb-4">Frequently Asked Questions</h2>
+          <p className="section-description text-center mb-8">
+            Have questions about blood donation? We've got answers to help you understand 
+            the process and make an informed decision.
+          </p>
+
+          <div className="faq-container">
+            {faqs.map((faq, index) => (
+              <div key={index} className="faq-item">
+                <div
+                  className="faq-question"
+                  onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className={`faq-icon ${openFAQ === index ? 'open' : ''}`}>
+                    ▼
+                  </span>
+                </div>
+                <div className={`faq-answer ${openFAQ === index ? 'open' : ''}`}>
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Collaboration Section */}
+        <section className="py-12 px-4">
+          <div className="max-w-4xl mx-auto bg-black/40 backdrop-blur-sm rounded-xl p-8 hover:bg-black/50 transition-all duration-300">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-1 space-y-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Partnership with Lions Club</h2>
+                <p className="text-gray-300 leading-relaxed">
+                  Last year, CBIT NSS proudly collaborated with Lions Club Hyderabad for a mega 
+                  blood donation drive. Together, we organized donation camp in the college campus, 
+                  bringing together volunteers, donors, and medical professionals to create a 
+                  significant impact. This partnership exemplifies our commitment to community 
+                  service and saving lives through collaborative efforts.
+                </p>
+                <a href="https://www.lionsclubs.org" target="_blank" rel="noopener noreferrer" 
+                   className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors mt-4">
+                  <span>Visit Lions Club International</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+              <div className="w-32 h-32 md:w-40 md:h-40 relative flex-shrink-0">
+                <Image
+                  src="/lionslogo.png"
+                  alt="Lions Club Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Compact Emergency Helpline */}
+        <div className="fixed bottom-6 right-6 bg-[#F22232] rounded-full px-6 py-3 shadow-lg flex items-center gap-4 hover:bg-[#d41e2d] transition-all cursor-pointer">
+          <div className="text-white">
+            <div className="text-sm font-medium">Emergency Helpline</div>
+            <div className="text-lg font-bold">+91 7396998809</div>
+          </div>
+          <div className="bg-white rounded-full p-2">
+            <span className="text-xl">📞</span>
+          </div>
+        </div>
       </div>
-
-      {/* ========== TAB CONTENT ========== */}
-      {activeTab === "become-donor" ? (
-        // BECOME A DONOR FORM
-        <form
-          onSubmit={handleDonorSubmit}
-          className="p-6 bg-white rounded shadow"
-        >
-          <h2 className="text-2xl font-bold mb-6 text-blue-700">Become a Donor</h2>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Donor Name *
-          </label>
-          <input
-            name="Donor Name"
-            placeholder="Enter your full name"
-            value={donorForm["Donor Name"]}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Blood Group *
-          </label>
-          <select
-            name="Blood Group"
-            value={donorForm["Blood Group"]}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          >
-            <option value="" disabled>
-              Select Blood Group
-            </option>
-            {bloodGroups.map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Contact Number *
-          </label>
-          <input
-            name="Contact Number"
-            placeholder="Enter your contact number"
-            value={donorForm["Contact Number"]}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Email Address *
-          </label>
-          <input
-            name="Email Address"
-            placeholder="Enter your email address"
-            type="email"
-            value={donorForm["Email Address"]}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Gender *
-          </label>
-          <select
-            name="Gender"
-            value={donorForm.Gender}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          >
-            <option value="" disabled>
-              Select Gender
-            </option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Age *
-          </label>
-          <input
-            name="Age"
-            placeholder="Enter your age"
-            type="number"
-            value={donorForm.Age}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Date of Last Donation
-          </label>
-          <input
-            type="date"
-            name="Date of Last Donation"
-            value={donorForm["Date of Last Donation"]}
-            onChange={handleDonorChange}
-            disabled={donorForm["Never Donated"]}
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="flex items-center mb-4 text-gray-700 cursor-pointer">
-            <input
-              type="checkbox"
-              name="Never Donated"
-              checked={donorForm["Never Donated"]}
-              onChange={handleDonorChange}
-              className="mr-2 w-4 h-4"
-            />
-            <span className="font-medium">I have never donated blood</span>
-          </label>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Availability Status *
-          </label>
-          <input
-            name="Availability Status"
-            placeholder="e.g., Available, Not Available"
-            value={donorForm["Availability Status"]}
-            onChange={handleDonorChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Medical Conditions
-          </label>
-          <textarea
-            name="Medical Conditions"
-            placeholder="Enter any medical conditions (if any)"
-            value={donorForm["Medical Conditions"]}
-            onChange={handleDonorChange}
-            rows="3"
-            className="w-full mb-6 p-2 border rounded text-black"
-          />
-
-          <button
-            type="submit"
-            disabled={isDonorSubmitting}
-            className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition disabled:bg-blue-400 w-full font-semibold"
-          >
-            {isDonorSubmitting ? "Submitting..." : "Submit"}
-          </button>
-        </form>
-      ) : (
-        // REQUEST DONOR FORM
-        <form
-          onSubmit={handleRequestSubmit}
-          className="p-6 bg-white rounded shadow"
-        >
-          <h2 className="text-2xl font-bold mb-6 text-red-700">Request Blood Donor</h2>
-          <p className="text-gray-600 mb-6 text-sm">
-            Fill out this form to request blood from our emergency donor network. Our team will be notified immediately via email.
-          </p>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Patient Name *
-          </label>
-          <input
-            name="Patient Name"
-            placeholder="Enter patient's full name"
-            value={requestForm["Patient Name"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Blood Group Required *
-          </label>
-          <select
-            name="Blood Group Required"
-            value={requestForm["Blood Group Required"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          >
-            <option value="" disabled>
-              Select Blood Group Required
-            </option>
-            {bloodGroups.map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Units Required *
-          </label>
-          <input
-            name="Units Required"
-            placeholder="Number of units needed"
-            type="number"
-            min="1"
-            value={requestForm["Units Required"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Urgency Level *
-          </label>
-          <select
-            name="Urgency Level"
-            value={requestForm["Urgency Level"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          >
-            <option value="" disabled>
-              Select Urgency Level
-            </option>
-            {urgencyLevels.map((level) => (
-              <option key={level} value={level}>
-                {level}
-              </option>
-            ))}
-          </select>
-          
-          <label className="flex items-center mb-4 text-gray-700 cursor-pointer">
-            <input
-              type="checkbox"
-              name="Live Donor Required"
-              checked={requestForm["Live Donor Required"]}
-              onChange={handleRequestChange}
-              className="mr-2 w-4 h-4"
-            />
-            <span className="font-medium">Live Donor Required</span>
-          </label>
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Required By Date *
-          </label>
-          <input
-            type="date"
-            name="Required By Date"
-            value={requestForm["Required By Date"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Required By Time *
-          </label>
-          <input
-            type="time"
-            name="Required By Time"
-            value={requestForm["Required By Time"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Hospital Name *
-          </label>
-          <input
-            name="Hospital Name"
-            placeholder="Enter hospital name"
-            value={requestForm["Hospital Name"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Hospital Location *
-          </label>
-          <textarea
-            name="Hospital Location"
-            placeholder="Enter complete hospital address"
-            value={requestForm["Hospital Location"]}
-            onChange={handleRequestChange}
-            required
-            rows="2"
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Contact Person Name *
-          </label>
-          <input
-            name="Contact Person Name"
-            placeholder="Enter contact person's name"
-            value={requestForm["Contact Person Name"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Contact Number *
-          </label>
-          <input
-            name="Contact Number"
-            placeholder="Enter contact number"
-            value={requestForm["Contact Number"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Email Address *
-          </label>
-          <input
-            name="Email Address"
-            placeholder="Enter email address"
-            type="email"
-            value={requestForm["Email Address"]}
-            onChange={handleRequestChange}
-            required
-            className="w-full mb-4 p-2 border rounded text-black"
-          />
-
-          <label className="block mb-1 text-gray-700 font-medium text-sm">
-            Additional Notes
-          </label>
-          <textarea
-            name="Additional Notes"
-            placeholder="Any additional information (optional)"
-            value={requestForm["Additional Notes"]}
-            onChange={handleRequestChange}
-            rows="3"
-            className="w-full mb-6 p-2 border rounded text-black"
-          />
-
-          <button
-            type="submit"
-            disabled={isRequestSubmitting}
-            className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition disabled:bg-red-400 w-full font-semibold"
-          >
-            {isRequestSubmitting ? "Submitting Request..." : "Submit Blood Request"}
-          </button>
-
-          <p className="text-xs text-gray-500 mt-4 text-center">
-            Your request will be sent to our External Affairs team immediately
-          </p>
-        </form>
-      )}
-    </div>
+    </>
   );
 }

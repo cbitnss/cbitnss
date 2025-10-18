@@ -10,10 +10,7 @@ class AnimatedGridBackground extends React.Component {
     this.rows = 10;
     this.cols = 15;
     this.colors = [
-      'bg-rose-200/90',
-      'bg-slate-200/90',
-      'bg-sky-200/90',
-      'bg-violet-200/90'
+      'bg-[#f22232]/90'
     ];
   }
 
