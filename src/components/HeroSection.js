@@ -1,6 +1,7 @@
 "use client";
+
 import React from "react";
-import Silk from "./Silk"; // ✅ correct import (file name: Silk.js)
+import Silk from "./Silk";
 
 export default function HeroSection() {
   return (
@@ -10,7 +11,7 @@ export default function HeroSection() {
         <Silk />
       </div>
 
-      {/* Optional dark overlay for better text visibility */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40 z-[5]" />
 
       {/* Hero content */}
