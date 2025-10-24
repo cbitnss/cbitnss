@@ -117,19 +117,19 @@ export default function RecentEventsSection() {
   const [bottomRef, bottomVisible] = useIntersectionObserver({ threshold: 0.2 });
 
   return (
-    <section className="relative w-full py-16 md:py-24 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+    <section className="relative w-full h-screen bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] overflow-hidden flex items-center">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl h-full flex flex-col justify-center py-8">
         
         {/* Section Title */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
             Recent Events
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-[#F22232] to-[#F22232]/50 rounded-full mx-auto"></div>
+          <div className="h-1 w-20 bg-gradient-to-r from-[#F22232] to-[#F22232]/50 rounded-full mx-auto"></div>
         </div>
 
-        {/* TOP HALF - Two Featured Events */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+        {/* TOP HALF - Two Featured Events with Horizontal Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8 flex-shrink-0">
           
           {/* LEFT - Arangetra */}
           <div
@@ -138,20 +138,25 @@ export default function RecentEventsSection() {
               topLeftVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="bg-black/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(242,34,50,0.3)] h-full flex flex-col">
-              <div className="relative h-56 md:h-64 lg:h-72 flex-shrink-0 overflow-hidden">
-                <div className="w-full h-full">
-                  <EventCard images={eventsData[0].images} />
+            <div className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(242,34,50,0.3)] h-full">
+              <div className="flex flex-col sm:flex-row h-full">
+                {/* Image Section */}
+                <div className="relative w-full sm:w-2/5 h-48 sm:h-auto flex-shrink-0 overflow-hidden">
+                  <div className="w-full h-full">
+                    <EventCard images={eventsData[0].images} />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20"></div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-              </div>
-              <div className="p-6 md:p-8 flex-grow flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                  {eventsData[0].title}
-                </h3>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed flex-grow">
-                  {eventsData[0].description}
-                </p>
+                
+                {/* Content Section */}
+                <div className="flex-1 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 md:mb-4">
+                    {eventsData[0].title}
+                  </h3>
+                  <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                    {eventsData[0].description}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -163,20 +168,25 @@ export default function RecentEventsSection() {
               topRightVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="bg-black/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(242,34,50,0.3)] h-full flex flex-col">
-              <div className="relative h-56 md:h-64 lg:h-72 flex-shrink-0 overflow-hidden">
-                <div className="w-full h-full">
-                  <EventCard images={eventsData[1].images} />
+            <div className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(242,34,50,0.3)] h-full">
+              <div className="flex flex-col sm:flex-row h-full">
+                {/* Image Section */}
+                <div className="relative w-full sm:w-2/5 h-48 sm:h-auto flex-shrink-0 overflow-hidden">
+                  <div className="w-full h-full">
+                    <EventCard images={eventsData[1].images} />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20"></div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-              </div>
-              <div className="p-6 md:p-8 flex-grow flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                  {eventsData[1].title}
-                </h3>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed flex-grow">
-                  {eventsData[1].description}
-                </p>
+                
+                {/* Content Section */}
+                <div className="flex-1 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 md:mb-4">
+                    {eventsData[1].title}
+                  </h3>
+                  <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                    {eventsData[1].description}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -185,11 +195,11 @@ export default function RecentEventsSection() {
         {/* BOTTOM HALF - 5 Small Event Cards */}
         <div
           ref={bottomRef}
-          className={`transition-all duration-700 ease-in-out ${
+          className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
             bottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 mb-6">
             {eventsData.slice(2, 7).map((event, idx) => (
               <Link 
                 key={event.id}
@@ -199,8 +209,8 @@ export default function RecentEventsSection() {
                 }`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(242,34,50,0.2)] cursor-pointer group h-full">
-                  <div className="relative h-40 md:h-48 overflow-hidden">
+                <div className="bg-black/40 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(242,34,50,0.2)] cursor-pointer group h-full">
+                  <div className="relative h-24 md:h-32 lg:h-36 overflow-hidden">
                     <img
                       src={event.images[0].url}
                       alt={event.images[0].alt}
@@ -212,12 +222,12 @@ export default function RecentEventsSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     
                     {/* Arrow Icon */}
-                    <div className="absolute bottom-3 right-3 w-8 h-8 bg-[#F22232] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
-                      <ArrowRight className="w-4 h-4 text-white" />
+                    <div className="absolute bottom-2 right-2 w-6 h-6 bg-[#F22232] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                      <ArrowRight className="w-3 h-3 text-white" />
                     </div>
                   </div>
-                  <div className="p-3 md:p-4">
-                    <h4 className="text-sm md:text-base font-semibold text-white line-clamp-2">
+                  <div className="p-2 md:p-3">
+                    <h4 className="text-xs md:text-sm font-semibold text-white line-clamp-2">
                       {event.title}
                     </h4>
                   </div>
@@ -229,7 +239,7 @@ export default function RecentEventsSection() {
           {/* View More Button */}
           <div className="flex justify-center">
             <Link href="/events">
-              <button className="px-8 py-4 bg-gradient-to-r from-[#F22232] to-[#F22232]/80 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-[0_0_30px_rgba(242,34,50,0.5)] transition-all duration-300 hover:scale-105 uppercase tracking-wider">
+              <button className="px-6 py-3 bg-gradient-to-r from-[#F22232] to-[#F22232]/80 text-white font-bold text-sm md:text-base rounded-full shadow-lg hover:shadow-[0_0_30px_rgba(242,34,50,0.5)] transition-all duration-300 hover:scale-105 uppercase tracking-wider">
                 View More Events
               </button>
             </Link>
