@@ -10,7 +10,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
-  Button,
 } from "@nextui-org/react";
 
 export const AcmeLogo = () => {
@@ -26,9 +25,10 @@ export default function App() {
     { name: "Home", href: "/" },
     { name: "Activities", href: "/events" },
     { name: "Certificates", href: "/certificates" },
-    { name: "NAP", href: "/nap" }, // changed to dedicated page
+    { name: "NAP", href: "/nap" },
+    { name: "Lost & Found", href: "/lost-found" },
     { name: "Executive Board", href: "/team" },
-    { name: "Blood Support Hub", href: "/emergency" },
+    { name: "Blood Donation Hub", href: "/emergency" },
   ];
 
   return (
@@ -48,41 +48,28 @@ export default function App() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="/">
-            Home
-          </Link>
+          <Link color="foreground" href="/">Home</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/events">
-            Activities
-          </Link>
+          <Link color="foreground" href="/events">Activities</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/certificates">
-            Certificates
-          </Link>
+          <Link color="foreground" href="/certificates">Certificates</Link>
         </NavbarItem>
-      
+        <NavbarItem>
+          <Link color="foreground" href="/nap">NAP</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/emergency">Blood Donation Hub</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/lost-found">Lost & Found</Link>
+        </NavbarItem>
+      </NavbarContent>
 
-      
-        <NavbarItem className="hidden sm:flex">
-          <Link color="foreground" href="/nap"> {/* NAP on desktop now points to /nap */}
-            NAP
-          </Link>
-        </NavbarItem>
-
-        <NavbarItem className="hidden sm:flex">
-          <Link color="foreground" href="/team">
-            Executive Board
-          </Link>
-        </NavbarItem>
-
-        <NavbarItem className="hidden sm:flex">
-          <Link color="foreground" href="/emergency">
-            Blood Support Hub
-          </Link>
-        </NavbarItem>
-        </NavbarContent>
+      <NavbarContent justify="end">
+        {/* ...existing right-side content if any... */}
+      </NavbarContent>
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
