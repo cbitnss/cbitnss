@@ -38,8 +38,8 @@ export function EventCard({ images }) {
           key={index}
           src={image.url}
           alt={image.alt}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] 
-            ${index === current ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.98]'}`}
+          className={`event-img absolute inset-0 w-full h-full object-cover 
+            ${index === current ? 'visible' : 'hidden'}`}
         />
       ))}
 
