@@ -285,10 +285,10 @@ body {
 /* Ensure page sections are separate stacking contexts and visible */
 .page-section {
   position: relative;
-  z-index: 0;              /* keep sections behind any intentional overlays */
-  overflow: visible;       /* allow children to display fully */
-  min-height: 100vh;       /* occupy full viewport */
-  padding-top: 1.25rem;    /* safe top padding so headings aren't clipped */
+  z-index: 0; /* keep sections behind any intentional overlays */
+  overflow: visible; /* allow children to display fully */
+  min-height: 100vh; /* occupy full viewport */
+  padding-top: 1.25rem; /* safe top padding so headings aren't clipped */
   padding-bottom: 1.25rem; /* safe bottom padding so CTAs aren't clipped */
   box-sizing: border-box;
 }
