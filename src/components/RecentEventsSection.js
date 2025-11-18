@@ -111,145 +111,269 @@ const eventsData = [
   },
 ];
 
+// REPLACED component: full-width list with inline floating preview
 export default function RecentEventsSection() {
-  const [topLeftRef, topLeftVisible] = useIntersectionObserver({ threshold: 0.3 });
-  const [topRightRef, topRightVisible] = useIntersectionObserver({ threshold: 0.3 });
-  const [bottomRef, bottomVisible] = useIntersectionObserver({ threshold: 0.2 });
+  const [containerRef, isVisible] = useIntersectionObserver({ threshold: 0.12 });
+
+  // only top 6 events
+  const topSix = eventsData.slice(0, 6);
+
+  // refs + hover state
+  const listRef = useRef(null);
+  const mouseRef = useRef({ x: 0, y: 0, w: 0, h: 0 }); // target (cursor) pos
+  const rafRef = useRef(null); // RAF id for animation loop
+  const previewPosRef = useRef({ x: 0, y: 0, w: 0, h: 0 }); // mirror of applied state
+
+  const latestLoadRef = useRef(null);
+
+  const [hoveredEvent, setHoveredEvent] = useState(null);
+  const [previewPos, setPreviewPos] = useState({ x: 0, y: 0, w: 0, h: 0 });
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+
+  // preview image states
+  const [displayedSrc, setDisplayedSrc] = useState(null);
+  const [displayedAlt, setDisplayedAlt] = useState('');
+  const [pendingSrc, setPendingSrc] = useState(null);
+
+  // preview size
+  const PREVIEW_W = 360;
+  const PREVIEW_H = 220;
+
+  // preload first + others
+  useEffect(() => {
+    const first = topSix[0];
+    const firstSrc = first?.images?.[0]?.url || '/placeholder-event.jpg';
+    setDisplayedSrc(firstSrc);
+    setDisplayedAlt(first?.title || '');
+    topSix.forEach(evt => {
+      const url = evt.images?.[0]?.url;
+      if (url) {
+        const img = new window.Image();
+        img.src = url;
+      }
+    });
+  }, []);
+
+  // handle mouse: update the target coordinates only. The RAF animation loop
+  // will lerp the preview position toward these coordinates producing a magnetic feel.
+  const handleMouseMove = (e) => {
+    if (!listRef.current) return;
+    const rect = listRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseRef.current = { x, y, w: rect.width, h: rect.height };
+    // start RAF loop if not already running (it will keep running until settled)
+    if (!rafRef.current) {
+      rafRef.current = window.requestAnimationFrame(animateFrame);
+    }
+  };
+
+  // lerp helper
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  // animation frame loop: smoothly move previewPos toward mouseRef target
+  const animateFrame = () => {
+    const target = mouseRef.current;
+    const current = previewPosRef.current;
+
+    // if target width/height changed, update them immediately
+    const w = target.w || current.w;
+    const h = target.h || current.h;
+
+    // easing factor: smaller => slower, more "magnetic"
+    const ease = 0.18;
+
+    const nextX = lerp(current.x, target.x, ease);
+    const nextY = lerp(current.y, target.y, ease);
+
+    // apply clamping similar to previewStyle logic
+    const halfW = PREVIEW_W / 2;
+    const minCenterX = 8 + halfW;
+    const maxCenterX = w - 8 - halfW;
+    const clampedX = Math.max(minCenterX, Math.min(maxCenterX, nextX));
+
+    const halfH = PREVIEW_H / 2;
+    const minCenterY = 8 + halfH;
+    const maxCenterY = h - 8 - halfH;
+    const clampedY = Math.max(minCenterY, Math.min(maxCenterY, nextY));
+
+    const newPos = { x: clampedX, y: clampedY, w, h };
+
+    // update refs + state
+    previewPosRef.current = newPos;
+    setPreviewPos(newPos);
+
+    // decide whether to continue animating:
+    const dx = Math.abs(current.x - target.x);
+    const dy = Math.abs(current.y - target.y);
+
+    // Continue if not yet settled OR preview visible (keeps slight motion after stop)
+    const stillMoving = dx > 0.5 || dy > 0.5 || isPreviewVisible;
+
+    rafRef.current = stillMoving ? window.requestAnimationFrame(animateFrame) : null;
+  };
+
+  const loadAndApplyImage = (src, alt, loadId) => {
+    const img = new window.Image();
+    img.src = src;
+    img.onload = () => {
+      if (latestLoadRef.current === loadId) {
+        setDisplayedSrc(src);
+        setDisplayedAlt(alt || '');
+        setPendingSrc(null);
+      }
+    };
+    img.onerror = () => {
+      if (latestLoadRef.current === loadId) {
+        setDisplayedSrc('/placeholder-event.jpg');
+        setDisplayedAlt(alt || '');
+        setPendingSrc(null);
+      }
+    };
+  };
+
+  const handleEnter = (eventItem, e) => {
+    setHoveredEvent(eventItem);
+    setIsPreviewVisible(true);
+    handleMouseMove(e);
+    const src = eventItem.images?.[0]?.url || '/placeholder-event.jpg';
+    setPendingSrc(src);
+    const loadId = Symbol();
+    latestLoadRef.current = loadId;
+    loadAndApplyImage(src, eventItem.title, loadId);
+  };
+
+  const handleLeave = () => {
+    setIsPreviewVisible(false);
+    setTimeout(() => setHoveredEvent(null), 160);
+    latestLoadRef.current = null;
+    setPendingSrc(null);
+  };
+
+  // Keep previewPosRef in sync if external code sets previewPos (ensure ref mirrors state)
+  useEffect(() => {
+    previewPosRef.current = previewPos;
+  }, [previewPos]);
+
+  // PREVIEW STYLE: centered on cursor, rectangular, stronger glow & shadow so it matches reference feel
+  const previewStyle = (() => {
+    const { x, y, w, h } = previewPos;
+    if (!w) return { opacity: 0, transform: 'translate(-50%, -50%) translateY(6px)' };
+
+    const halfW = PREVIEW_W / 2;
+    const halfH = PREVIEW_H / 2;
+
+    const minCenterX = 8 + halfW;
+    const maxCenterX = w - 8 - halfW;
+    let centerX = x;
+    if (centerX < minCenterX) centerX = minCenterX;
+    if (centerX > maxCenterX) centerX = maxCenterX;
+
+    const minCenterY = 8 + halfH;
+    const maxCenterY = h - 8 - halfH;
+    let centerY = y;
+    if (centerY < minCenterY) centerY = minCenterY;
+    if (centerY > maxCenterY) centerY = maxCenterY;
+
+    // stronger red rim + ambient shadow, rectangular (no rounding)
+    const glow = isPreviewVisible
+      ? '0 30px 80px rgba(242,34,50,0.22), 0 10px 40px rgba(0,0,0,0.7)'
+      : 'none';
+
+    return {
+      left: `${centerX}px`,
+      top: `${centerY}px`,
+      width: `${PREVIEW_W}px`,
+      height: `${PREVIEW_H}px`,
+      opacity: isPreviewVisible && (displayedSrc || pendingSrc) ? 1 : 0,
+      transform: isPreviewVisible ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.995)',
+      transition: 'transform 120ms ease-out, opacity 120ms ease-out, box-shadow 160ms ease-out',
+      boxShadow: glow,
+      borderRadius: '0px',
+      overflow: 'visible',
+      willChange: 'transform, opacity, box-shadow',
+      position: 'absolute',
+      pointerEvents: 'none',
+      zIndex: 30 // image above separators but below text
+    };
+  })();
 
   return (
-    <section className="relative w-full h-screen bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] overflow-hidden flex items-center">
-      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl h-full flex flex-col justify-center py-8">
-        
-        {/* Section Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-            Recent Events
-          </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-[#F22232] to-[#F22232]/50 rounded-full mx-auto"></div>
+    <section ref={containerRef} className="relative w-full min-h-[72vh] bg-black overflow-hidden flex items-center py-12">
+      {/* full-bleed header area */}
+      <div className="w-full mx-0 px-0">
+        <div className="flex items-center justify-center gap-6 mb-8">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-0">Recent Activities</h2>
+            <div className="h-1 w-20 bg-[#f22232] rounded-full mx-auto mt-3" />
+          </div>
+          <Link href="/events" className="inline-block px-5 py-2 bg-[#f22232] text-white rounded-full font-semibold hover:brightness-95 transition hidden sm:inline">
+            View More Events
+          </Link>
         </div>
 
-        {/* TOP HALF - Two Featured Events with Horizontal Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8 flex-shrink-0">
-          
-          {/* LEFT - Arangetra */}
-          <div
-            ref={topLeftRef}
-            className={`transition-all duration-700 ease-in-out ${
-              topLeftVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <div className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(242,34,50,0.3)] h-full">
-              <div className="flex flex-col sm:flex-row h-full">
-                {/* Image Section */}
-                <div className="relative w-full sm:w-2/5 h-48 sm:h-auto flex-shrink-0 overflow-hidden">
-                  <div className="w-full h-full">
-                    <EventCard images={eventsData[0].images} />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20"></div>
-                </div>
-                
-                {/* Content Section */}
-                <div className="flex-1 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 md:mb-4">
-                    {eventsData[0].title}
-                  </h3>
-                  <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                    {eventsData[0].description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT - NSS Summit */}
-          <div
-            ref={topRightRef}
-            className={`transition-all duration-700 ease-in-out delay-200 ${
-              topRightVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <div className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(242,34,50,0.3)] h-full">
-              <div className="flex flex-col sm:flex-row h-full">
-                {/* Image Section */}
-                <div className="relative w-full sm:w-2/5 h-48 sm:h-auto flex-shrink-0 overflow-hidden">
-                  <div className="w-full h-full">
-                    <EventCard images={eventsData[1].images} />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20"></div>
-                </div>
-                
-                {/* Content Section */}
-                <div className="flex-1 p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 md:mb-4">
-                    {eventsData[1].title}
-                  </h3>
-                  <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                    {eventsData[1].description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* BOTTOM HALF - 5 Small Event Cards */}
+        {/* full-width list (black background, single separators) */}
         <div
-          ref={bottomRef}
-          className={`transition-all duration-700 ease-in-out flex-shrink-0 ${
-            bottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          ref={listRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleLeave}
+          className={`relative w-full bg-black p-0 transition-all ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 mb-6">
-            {eventsData.slice(2, 7).map((event, idx) => (
-              <Link 
-                key={event.id}
-                href={`/events#${event.id}`}
-                className={`transition-all duration-700 ease-in-out ${
-                  bottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ transitionDelay: `${idx * 100}ms` }}
-              >
-                <div className="bg-black/40 backdrop-blur-sm rounded-lg overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(242,34,50,0.2)] cursor-pointer group h-full">
-                  <div className="relative h-24 md:h-32 lg:h-36 overflow-hidden">
-                    <img
-                      src={event.images[0].url}
-                      alt={event.images[0].alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      onError={(e) => {
-                        e.target.src = '/placeholder-event.jpg';
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    
-                    {/* Arrow Icon */}
-                    <div className="absolute bottom-2 right-2 w-6 h-6 bg-[#F22232] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
-                      <ArrowRight className="w-3 h-3 text-white" />
-                    </div>
+          <div className="grid grid-cols-1">
+            {topSix.map((event, idx) => {
+              const isActive = hoveredEvent?.id === event.id;
+              return (
+                <div
+                  key={event.id}
+                  onMouseEnter={(e) => handleEnter(event, e)}
+                  onMouseLeave={handleLeave}
+                  // no z-index on the item container (prevents it from forming a higher stacking context)
+                  // text will be explicitly placed above the preview (z-50) below.
+                  className={`relative flex items-center justify-between py-6 px-8 cursor-pointer transition-colors`}
+                  style={isActive ? { boxShadow: 'inset 0 0 120px rgba(242,34,50,0.03)', background: 'rgba(255,255,255,0.01)' } : {}}
+                >
+                  {/* Text block (topmost) */}
+                  <div className={`flex items-center gap-6 z-50`}> {/* text above preview */}
+                    <div className={`text-sm ${isActive ? 'text-white' : 'text-gray-300'} w-6 text-right`}>{idx + 1}</div>
+                    <div className={`text-sm md:text-base font-medium ${isActive ? 'text-white' : 'text-gray-200'} truncate`}>{event.title}</div>
                   </div>
-                  <div className="p-2 md:p-3">
-                    <h4 className="text-xs md:text-sm font-semibold text-white line-clamp-2">
-                      {event.title}
-                    </h4>
-                  </div>
+                  <div className={`text-sm ${isActive ? 'text-white/90' : 'text-gray-400'} z-50`}>{event.year}</div>
+
+                  {/* full-width thin white separator at bottom (always visible, lowest layer) */}
+                  <div className="absolute left-0 right-0 bottom-0 h-px bg-white z-0" />
                 </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
 
-          {/* View More Button */}
-          <div className="flex justify-center">
-            <Link href="/events">
-              <button className="px-6 py-3 bg-gradient-to-r from-[#F22232] to-[#F22232]/80 text-white font-bold text-sm md:text-base rounded-full shadow-lg hover:shadow-[0_0_30px_rgba(242,34,50,0.5)] transition-all duration-300 hover:scale-105 uppercase tracking-wider">
-                View More Events
-              </button>
-            </Link>
+          {/* Floating preview image centered on cursor (rectangular, sits under text but above separators) */}
+          <div style={previewStyle} aria-hidden="true">
+            {(displayedSrc || pendingSrc) && (
+              <div className="w-full h-full relative" style={{ background: 'transparent' }}>
+                <img
+                  src={displayedSrc || pendingSrc || '/placeholder-event.jpg'}
+                  alt={displayedAlt || (hoveredEvent?.title || '')}
+                  className="block object-cover"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    opacity: 0.92, // slightly dim so the white separators are still perceived underneath
+                    transform: isPreviewVisible ? 'scale(1.02)' : 'scale(0.995)',
+                    display: 'block'
+                  }}
+                  onError={(e) => (e.currentTarget.src = '/placeholder-event.jpg')}
+                />
+                {/* subtle overlay so image is not too bright and separators show through */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.18), rgba(0,0,0,0.02))', pointerEvents: 'none' }} />
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#F22232]/10 rounded-full blur-3xl opacity-20"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl opacity-20"></div>
+      {/* decorative glows (kept subtle) */}
+      <div className="absolute -left-24 top-8 w-64 h-64 rounded-full bg-[#F22232]/6 blur-3xl pointer-events-none" />
+      <div className="absolute -right-24 bottom-8 w-64 h-64 rounded-full bg-blue-600/6 blur-3xl pointer-events-none" />
     </section>
   );
 }
