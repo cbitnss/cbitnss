@@ -12,9 +12,11 @@ import {
   Link,
 } from "@nextui-org/react";
 
+import SpotlightGrid from "./SpotlightGrid"; // masked grid overlay (optional)
+
 export const AcmeLogo = () => {
   return (
-    <Image src={"nssid.svg"} alt="ACME" height={36} width={36} />
+    <Image src={"/nssid.svg"} alt="CBIT NSS" height={36} width={36} />
   );
 };
 
@@ -32,60 +34,48 @@ export default function App() {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="7xl" className="fixed bg-black/50 backdrop-blur-md">
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <Link href="/">
+    <>
+      {/* Full-viewport spotlight grid (invisible unless cursor reveals) */}
+      <SpotlightGrid gridSize={36} highlightRadius={300} gridColor="rgba(255,255,255,0.12)" />
+
+      {/* Navbar: ensure it has higher z-index so UI stays on top */}
+      <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="7xl" className="fixed z-50 bg-black/50 backdrop-blur-md">
+        <NavbarContent>
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
           <NavbarBrand>
             <AcmeLogo />
-            <p className="font-bold text-inherit pl-3">CBIT NSS</p>
+            <span className="font-bold text-inherit pl-3">CBIT NSS</span>
           </NavbarBrand>
-        </Link>
-      </NavbarContent>
+        </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="/">Home</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/events">Activities</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/certificates">Certificates</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/nap">NAP</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/emergency">Blood Donation Hub</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/lost-found">Lost & Found</Link>
-        </NavbarItem>
-      </NavbarContent>
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          {menuItems.map((item) => (
+            <NavbarItem key={item.href}>
+              <Link href={item.href} className="text-white">
+                {item.name}
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
 
-      <NavbarContent justify="end">
-        {/* ...existing right-side content if any... */}
-      </NavbarContent>
+        <NavbarContent justify="end">
+          {/* optional right-side items */}
+        </NavbarContent>
 
-      <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item.name}-${index}`}>
-            <Link
-              className="mobile-menu-item text-white"
-              href={item.href}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span>{item.name}</span>
-              <span>&gt;</span>
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+        <NavbarMenu>
+          {menuItems.map((item) => (
+            <NavbarMenuItem key={item.href}>
+              <Link href={item.href} className="block w-full">
+                {item.name}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+      </Navbar>
+    </>
   );
 }
 

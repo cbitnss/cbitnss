@@ -1,8 +1,9 @@
 import localFont from "next/font/local";
-import {NextUIProvider} from '@nextui-org/react'
+import { NextUIProvider } from '@nextui-org/react'
 import './globals.css';
 import App from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SpotlightGrid from "@/components/SpotlightGrid"; // Import the grid
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,14 +25,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-black text-white`}
       >
+        {/* 1. GLOBAL GRID: Sits in background (z-0) */}
+        <SpotlightGrid />
+
+        {/* 2. APP CONTENT: Sits on top (z-10) */}
         <NextUIProvider>
-          <App /> {/* navbar rendered here globally */}
-          <main className="flex-1 pt-16"> {/* offset for fixed navbar */}
-            {children}
-          </main>
-          <Footer />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <App /> 
+            <main className="flex-1 pt-16">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </NextUIProvider>
       </body>
     </html>

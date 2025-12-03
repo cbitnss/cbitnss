@@ -31,15 +31,13 @@ body {
 .hero-section {
   position: relative;
   overflow: hidden;
-  /* Enforce min-height to utilize viewport space and avoid scroll */
-  min-height: 100vh; /* Changed from lg:min-h-screen to 100vh */
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.98) 0%,
-    rgba(0, 0, 0, 0.96) 100%
-  );
+  min-height: 100vh;
 
-  /* Ensure hero fits one viewport and quote scales responsively */
+  /* UPDATED: Make transparent so grid shows through */
+  background: transparent;
+  /* OR use a very light fade if text is hard to read: */
+  /* background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%); */
+
   display: flex;
   align-items: center;
 }

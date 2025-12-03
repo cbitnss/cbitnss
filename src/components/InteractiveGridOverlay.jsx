@@ -2,17 +2,18 @@
 import React, { useEffect, useRef } from "react";
 
 /*
-  Full-viewport grid + magnetic glow overlay.
-  - Default grid lines are stronger so they're visible on dark backgrounds.
-  - Glow follows cursor with eased motion.
-  - pointer-events: none so it doesn't block interactions.
+  InteractiveGridOverlay (updated)
+  - Grid is hidden by default using a CSS mask and only revealed where the spotlight is.
+  - Spotlight follows the cursor with eased RAF motion to produce a smooth glow.
+  - Grid spacing increased (gridSize default 64).
+  - Overlay sits behind page content (zIndex: 0).
 */
 export default function InteractiveGridOverlay({
-  gridSize = 36,               // spacing between lines
-  lineOpacity = 0.12,         // grid line opacity (increased so visible)
-  glowColor = "242,34,50",    // rgb glow color
-  glowRadius = 220,           // glow radius in px
-  ease = 0.12                 // lerp factor
+  gridSize = 64,             // larger spacing between lines
+  lineOpacity = 0.16,        // grid line opacity
+  glowColor = "242,34,50",   // rgb glow color (kept for potential coloring)
+  glowRadius = 320,          // spotlight radius in px
+  ease = 0.14                // lerp factor for magnetic motion
 }) {
   const elRef = useRef(null);
   const targetRef = useRef({ x: -9999, y: -9999 });
@@ -23,29 +24,22 @@ export default function InteractiveGridOverlay({
     const el = elRef.current;
     if (!el) return;
 
+    // init css vars
     el.style.setProperty("--mx", "-9999px");
     el.style.setProperty("--my", "-9999px");
     el.style.setProperty("--glow-radius", `${glowRadius}px`);
     el.style.setProperty("--grid-size", `${gridSize}px`);
-    el.style.setProperty("--glow-alpha", "0.95");
 
     const onMove = (e) => {
-      targetRef.current.x = e.clientX;
-      targetRef.current.y = e.clientY;
+      const clientX = e.touches?.[0]?.clientX ?? e.clientX;
+      const clientY = e.touches?.[0]?.clientY ?? e.clientY;
+      targetRef.current.x = clientX;
+      targetRef.current.y = clientY;
       if (!rafRef.current) rafRef.current = window.requestAnimationFrame(step);
     };
 
-    const onTouch = (e) => {
-      const t = e.touches && e.touches[0];
-      if (t) {
-        targetRef.current.x = t.clientX;
-        targetRef.current.y = t.clientY;
-        if (!rafRef.current) rafRef.current = window.requestAnimationFrame(step);
-      }
-    };
-
     window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("touchmove", onTouch, { passive: true });
+    window.addEventListener("touchmove", onMove, { passive: true });
 
     const step = () => {
       const t = targetRef.current;
@@ -56,11 +50,11 @@ export default function InteractiveGridOverlay({
       el.style.setProperty("--mx", `${Math.round(p.x)}px`);
       el.style.setProperty("--my", `${Math.round(p.y)}px`);
 
-      // speed-driven subtle alpha for liveliness
+      // small speed-driven alpha variation for glow intensity (not required for mask but useful)
       const dx = Math.abs(t.x - p.x);
       const dy = Math.abs(t.y - p.y);
       const speed = Math.min(1, Math.sqrt(dx * dx + dy * dy) / 80);
-      el.style.setProperty("--glow-alpha", String(0.95 - Math.min(0.6, speed * 0.6)));
+      el.style.setProperty("--glow-alpha", String(0.9 - Math.min(0.6, speed * 0.6)));
 
       const settled = dx < 0.5 && dy < 0.5;
       rafRef.current = settled ? null : window.requestAnimationFrame(step);
@@ -68,19 +62,13 @@ export default function InteractiveGridOverlay({
 
     return () => {
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("touchmove", onMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [gridSize, glowRadius, ease]);
 
-  // Compose background: glow top, vertical & horizontal grid lines below
-  const bg = `
-    radial-gradient(circle at var(--mx, -9999px) var(--my, -9999px),
-      rgba(${glowColor}, calc(var(--glow-alpha, 0.95) * 0.36)) 0%,
-      rgba(${glowColor}, calc(var(--glow-alpha, 0.95) * 0.14)) 18%,
-      rgba(${glowColor}, 0.06) 40%,
-      transparent calc(var(--glow-radius, ${glowRadius}px) * 1)
-    ),
+  // Grid background (larger spacing) - mask will reveal only the spotlight area
+  const gridBg = `
     repeating-linear-gradient(0deg,
       rgba(255,255,255, ${lineOpacity}) 0px,
       rgba(255,255,255, ${lineOpacity}) 1px,
@@ -95,18 +83,26 @@ export default function InteractiveGridOverlay({
     )
   `;
 
+  // Mask: radial gradient centered at --mx/--my that creates a soft spotlight
+  const mask = `radial-gradient(circle var(--glow-radius, ${glowRadius}px) at var(--mx) var(--my),
+    rgba(0,0,0,1) 0%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0) 100%)`;
+
   return (
     <div
       ref={elRef}
       aria-hidden="true"
       className="interactive-grid-overlay pointer-events-none fixed inset-0"
       style={{
-        zIndex: 10, // sits above backgrounds (z-0) and below most UI (Navbar is z-50)
-        backgroundImage: bg,
+        zIndex: 0, // behind main content (make sure page content has z-index > 0)
+        backgroundImage: gridBg,
         backgroundRepeat: "no-repeat",
-        mixBlendMode: "overlay",
-        opacity: 0.9,
-        transition: "opacity 140ms linear"
+        backgroundPosition: "0 0",
+        // Reveal the grid only inside the spotlight using mask
+        WebkitMaskImage: mask,
+        maskImage: mask,
+        opacity: 1,
+        transition: "opacity 140ms linear",
+        mixBlendMode: "normal"
       }}
     />
   );
