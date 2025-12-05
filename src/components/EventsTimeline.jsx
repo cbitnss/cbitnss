@@ -51,6 +51,216 @@ const EVENTS = [
     description:
       "Hydra Walk is a lake protection and cleanup campaign focused on raising awareness about encroachment and pollution. Volunteers participate in cleanup, advocacy and community education to preserve local water bodies.",
     images: ["/hydra1.jpg", "/hydra2.jpg", "/hydra3.png", "/hydra4.jpg"]
+  },
+  {
+    id: "11",
+    title: "Clay Ganesh Making — Creative Engagement",
+    description:
+      "NSS members visited a primary school and connected with the children through a fun-filled clay modeling activity where everyone made beautiful Ganesh idols together.",
+    images: ["/clayg1.jpg", "/clayg2.jpg", "/clayg3.jpg"]
+  },
+  {
+    id: "12",
+    title: "Orientation — Welcome to NSS",
+    description:
+      "CBIT NSS welcomed new volunteers and introduced them to the club's mission, values and activities. Orientation sessions help new members understand how they can contribute to our social service initiatives.",
+    images: ["/golconda1.jpg", "/golconda2.jpg", "/golconda3.jpg"]
+  },
+  {
+    id: "13",
+    title: "Women's Day — Celebrating Empowerment",
+    description:
+      "CBIT NSS celebrated International Women's Day by organizing empowering sessions and activities recognizing the achievements of women and promoting gender equality in our community.",
+    images: ["/womday1.jpg", "/womday2.jpg", "/womday3.jpg"]
+  },
+  {
+    id: "14",
+    title: "Village Camp — Community Connection",
+    description:
+      "NSS volunteers spent a few days in a nearby village, running service drives, awareness sessions and informal classes while bonding with the local community and understanding their needs.",
+    images: ["/vcamp1.jpg", "/vcamp2.jpg", "/vcamp3.jpg"]
+  },
+  {
+    id: "15",
+    title: "YUVA — National Youth Contest",
+    description:
+      "At the national-level inter-college youth contest YUVA, students burst with energy in leadership and service-oriented events, showcasing our club's leadership spirit and dedication to social service.",
+    images: ["/yuva1.jpg", "/yuva2.jpg", "/yuva3.jpg"]
+  },
+  {
+    id: "16",
+    title: "Teacher's Day — Honoring Mentors",
+    description:
+      "On Teacher's Day the NSS team honoured faculty with heartfelt speeches, handmade cards and a small felicitation ceremony to express gratitude for their guidance and support.",
+    images: ["/tchr1.jpg", "/tchr2.jpg"]
+  },
+  {
+    id: "17",
+    title: "Event 17 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "18",
+    title: "Event 18 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "19",
+    title: "Event 19 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "20",
+    title: "Event 20 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "21",
+    title: "Event 21 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "22",
+    title: "Event 22 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "23",
+    title: "Event 23 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "24",
+    title: "Event 24 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "25",
+    title: "Event 25 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "26",
+    title: "Event 26 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "27",
+    title: "Event 27 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "28",
+    title: "Event 28 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "29",
+    title: "Event 29 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "30",
+    title: "Event 30 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "31",
+    title: "Event 31 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "32",
+    title: "Event 32 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "33",
+    title: "Event 33 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "34",
+    title: "Event 34 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "35",
+    title: "Event 35 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "36",
+    title: "Event 36 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "37",
+    title: "Event 37 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "38",
+    title: "Event 38 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "39",
+    title: "Event 39 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "40",
+    title: "Event 40 — Add Title Here",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   }
 ];
 
