@@ -18,14 +18,14 @@ const EVENTS = [
     images: ["/sum1.jpg", "/sum2.jpg", "/sum3.jpg", "/sum4.jpg"]
   },
   {
-    id: "3",
+    id: "5",
     title: "Strength in Solidarity — Awareness March",
     description:
       "Our Strength in Solidarity march unites students and staff to raise awareness about social justice and community welfare. The march combines peaceful demonstration with outreach and educational talks.",
     images: ["/sis1.JPG", "/sis2.JPG", "/sis3.jpg"]
   },
   {
-    id: "5",
+    id: "3",
     title: "Be My Santa — Festive Giving",
     description:
       "Be My Santa is our holiday outreach program where NSS members collect and fulfill wishes for children in local orphanages. We bring gifts, organize activities and spread joy during the festive season.",
@@ -54,7 +54,7 @@ const EVENTS = [
   },
   {
     id: "11",
-    title: "Clay Ganesh Making — Creative Engagement",
+    title: "Clay Ganesh Making — Creative Engagement (school)",
     description:
       "NSS members visited a primary school and connected with the children through a fun-filled clay modeling activity where everyone made beautiful Ganesh idols together.",
     images: ["/clayg1.jpg", "/clayg2.jpg", "/clayg3.jpg"]
@@ -89,175 +89,161 @@ const EVENTS = [
   },
   {
     id: "16",
-    title: "Teacher's Day — Honoring Mentors",
+    title: "Teacher's Day 2025 — Honoring Mentors",
     description:
       "On Teacher's Day the NSS team honoured faculty with heartfelt speeches, handmade cards and a small felicitation ceremony to express gratitude for their guidance and support.",
     images: ["/tchr1.jpg", "/tchr2.jpg"]
   },
   {
     id: "17",
-    title: "Event 17 — Add Title Here",
+    title: "Blanket Donation",
+    description: 'This winter, we the CBIT NSS Unit organized a heartfelt Blanket Donation Drive, where volunteers stepped out onto the streets at night to distribute warm blankets to individuals sleeping outdoors. This initiative aimed to provide comfort during the cold weather while fostering compassion and social responsibility among students.The drive was not only impactful, bringing immediate relief to those in need, but also an enriching and uplifting experience for the volunteers. Working together, the students witnessed firsthand the difference a small act of kindness can make, reinforcing the true spirit of service that NSS stands for. Seeing the smiles, sharing small conversations, and knowing we made someone’s night a little warmer reminded us why service matters. Grateful to be part of a team that turns compassion into action..',
+      
+    images: ["/Blanket2.jpg", "/Blanket3.jpg"]
+  },
+  {
+    id: "41",
+    title: "Food donation drive",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "42",
+    title: "TFT Chandippa",
+    description:
+      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+  },
+  {
+    id: "43",
+    title: "Girl child day",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "18",
-    title: "Event 18 — Add Title Here",
+    title: "Food donation drive",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "19",
-    title: "Event 19 — Add Title Here",
+    title: "Teachers day-2026",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "20",
-    title: "Event 20 — Add Title Here",
+    title: "Pcos",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "21",
-    title: "Event 21 — Add Title Here",
+    title: "Clay ganesh orphanage",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "22",
-    title: "Event 22 — Add Title Here",
+    title: "Anti ragging walk ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "23",
-    title: "Event 23 — Add Title Here",
+    title: "Tft shilparamam",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "24",
-    title: "Event 24 — Add Title Here",
+    title: "Anti Drug drive",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "25",
-    title: "Event 25 — Add Title Here",
+    title: "Euphoria ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "26",
-    title: "Event 26 — Add Title Here",
+    title: "Women's Day",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "27",
-    title: "Event 27 — Add Title Here",
+    title: "TFT Charminar",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "28",
-    title: "Event 28 — Add Title Here",
-    description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
-  },
-  {
-    id: "29",
-    title: "Event 29 — Add Title Here",
-    description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
-  },
-  {
-    id: "30",
-    title: "Event 30 — Add Title Here",
+    title: "Khadi",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "31",
-    title: "Event 31 — Add Title Here",
-    description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
-  },
-  {
-    id: "32",
-    title: "Event 32 — Add Title Here",
+    title: "Watch for cause ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "33",
-    title: "Event 33 — Add Title Here",
+    title: "Cleanliness drive",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "34",
-    title: "Event 34 — Add Title Here",
-    description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
-  },
-  {
-    id: "35",
-    title: "Event 35 — Add Title Here",
-    description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
-  },
-  {
-    id: "36",
-    title: "Event 36 — Add Title Here",
+    title: "Girl child day",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "37",
-    title: "Event 37 — Add Title Here",
+    title: "Orphanage visit ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "38",
-    title: "Event 38 — Add Title Here",
+    title: "Hydra walk",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "39",
-    title: "Event 39 — Add Title Here",
+    title: "Strength in solidarity ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "40",
-    title: "Event 40 — Add Title Here",
+    title: "Oldage Home visit",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
