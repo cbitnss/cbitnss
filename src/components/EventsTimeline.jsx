@@ -50,7 +50,7 @@ const EVENTS = [
     title: "Hydra Walk — Lake Protection Campaign",
     description:
       "Hydra Walk is a lake protection and cleanup campaign focused on raising awareness about encroachment and pollution. Volunteers participate in cleanup, advocacy and community education to preserve local water bodies.",
-    images: ["/hydra1.jpg", "/hydra2.jpg", "/hydra3.png", "/hydra4.jpg"]
+    images: ["/HYDRAWALK1.jpg", "/HYDRAWALK2.jpg", "/HYDRAWALK3.png", "/HYDRAWALK4.jpg"]
   },
   {
     id: "11",
@@ -90,8 +90,8 @@ const EVENTS = [
   {
     id:"16",
     title: "Teachers' Day Celebration",
-    description:" ",
-    images: ["/tchr1.jpg", "/tchr2.jpg"]
+    description:"This Teacher’s Day, we celebrated the mentors who guide our journey with a fun and lively twistStudents put on special performances that added colour and energy to the celebration. Our Directors addressed the gathering with an inspiring speech, reminding us of the invaluable role teachers play in shaping our futureThe event blended joy, gratitude, and heartfelt moments as we honoured our educatorsEvery teacher walked away with a rose, a smile, and the warmth of the NSS family — a simple gesture to thank them for their endless support and inspiration ",
+    images: ["/Teachers2024Day1.jpg", "/Teachers2024Day2.jpg","/Teachers2024Day3.jpg"]
   },
   {
     id: "17",
@@ -201,7 +201,7 @@ const EVENTS = [
     title: "Cleanliness drive",
     description:
       " Cleanliness is not just a responsibility it’s a way of life. Inspired by the Swachhata Hi Seva initiative, the day focused on encouraging cleaner surroundings and nurturing a shared sense of responsibility within the community.A brief visit to Zilla Parishad High School, Gandipet added a touch of joy to the day, with light moments shared alongside the students. Small steps like these bring us closer to a healthier, more sustainable future.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/cleanliness1.jpg", "/cleanliness2.jpg","/cleanliness4.jpg","/cleanliness5.jpg","/cleanliness7.jpg","/cleanliness8.jpg"]
   },
   {
     id: "34",
@@ -229,14 +229,14 @@ const EVENTS = [
     title: "Strength in solidarity ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Soliditary0.jpg", "/Soliditary1.jpg","/Soliditary2.jpg","/Soliditary3.jpg","/Soliditary4.jpg"]
   },
   {
     id: "40",
     title: "Oldage Home visit",
     description:
       " More than just a place, this is a second home where one finds care, laughter, and companionship; a place where our presence offered a brief, happy break in their daily rhythm. We spent time listening to their stories, sharing smiles, and creating a joyful atmosphere.Small games, songs, and conversations turned into heartfelt memories.The visit reminded everyone of the value of love, respect, and human connection.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/oldagehome1.jpg", "/oldagehome2.jpg","/oldagehome3.jpg","/oldagehome4.jpg"]
   }
 ];
 
