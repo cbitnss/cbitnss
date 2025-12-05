@@ -7,7 +7,7 @@ const EVENTS = [
     id: "1",
     title: "Arangetra — Cultural Extravaganza",
     description:
-      "Arangetra is our flagship cultural event where students showcase dance, music and theatre. It brings together diverse talents across campus and celebrates community, creativity and cultural pride.",
+      "Arangetra is our flagship cultural event where students showcase dance, music and theatre. It  was three days of total craziness, laughter, and nonstop fun! From the messy chaos of Break Tissue Make Tissue to wobbling like crazy in Slow Cycle, the days were full of hilarious moments. Some tried to be sneaky in Monopoly, while others ran, tumbled, and screamed through Dashing Duo and the Team Roller Board Race. Trust Me Bro had everyone yelling instructions and laughing till their stomachs hurt, and the giant Sumo battles? Pure comic gold! Three days of madness, giggles, friendly fights, and memories that will keep everyone smiling forever!",
     images: ["/arang2.jpg", "/arang1.jpg", "/arang3.jpg"]
   },
   {
