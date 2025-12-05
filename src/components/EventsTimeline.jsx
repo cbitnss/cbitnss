@@ -134,7 +134,7 @@ const EVENTS = [
     title: "Teachers day-2026",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Copy of 25TeachersDay1.jpg", "/Copy of 25TeachersDay2.jpg","/Copy of 25TeachersDay3.jpg","/Copy of 25TeachersDay4.jpg"]
   },
   {
     id: "20",
@@ -211,7 +211,7 @@ const EVENTS = [
     title: "Cleanliness drive",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Copy of Cleanliness2.heif", "/Copy of Cleanliness1.heif","/Copy of Cleanliness3.heif","/Copy of Cleanliness4.heif","/Copy of Cleanliness5.heif"]
   },
   {
     id: "34",
@@ -239,7 +239,7 @@ const EVENTS = [
     title: "Strength in solidarity ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Copy of Soliditary4.jpeg", "/Copy of Solidarity2.jpeg","/Copy of Solidarity3.jpeg","/Copy of Solidarity1.jpeg","/Copy of Solidarity1.jpeg"]
   },
   {
     id: "40",
