@@ -109,6 +109,7 @@ const eventsData = [
     ],
     year: 2023
   },
+
   {
     id: '11',
     title: 'Clay Ganesh Making',
