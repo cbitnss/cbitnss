@@ -90,7 +90,7 @@ const EVENTS = [
   {
     id:"16",
     title: "Teachers' Day Celebration",
-    description:" ",
+    description:"This Teacher’s Day, we celebrated the mentors who shape our journey with a fun and refreshing segment titled Out of Syllabus. Instead of students answering the questions, we turned the tables and placed our teachers in the spotlight, asking them light-hearted and unexpected questions that filled the room with laughter and warmth.The event blended joy, appreciation, and heartfelt moments as we honoured the educators. Each teacher left with a rose, a smile, and the love of the NSS family — a small gesture of gratitude for their constant guidance and inspiration. ",
     images: ["/tchr1.jpg", "/tchr2.jpg"]
   },
   {
@@ -102,7 +102,7 @@ const EVENTS = [
   {
     id: "42",
     title: "TFT Chandippa",
-    description: "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    description: " As part of our Tales From Town initiative, we visited the potters’ community in Chandippa to explore the stories shaped by their hands and their craft. Our volunteers spent the day interacting with local potters, learning about their lifestyle, documenting their challenges, and capturing their heartfelt experiences.From watching live pottery take form to hearing the inspiring journeys behind each creation, the session was both insightful and enjoyable. It offered us a refreshing glimpse into a traditional art that continues to thrive through passion and perseverance.Tales From Town truly brought us closer to the roots of our community and reminded us of the beauty in everyday craftsmanship.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
@@ -144,7 +144,7 @@ const EVENTS = [
     id: "22",
     title: "Anti ragging walk ",
     description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+      "The Anti-Ragging Day session was a strong and informative programme aimed at spreading awareness about the seriousness of ragging. Higher authorities addressed the gathering and explained the emotional, academic, and legal consequences that ragging can bring. Their guidance helped students understand the importance of respect, empathy, and maintaining a safe campus environment. The session concluded with a firm message that every student holds the responsibility to stand against ragging and uphold a culture of dignity and safety.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
@@ -200,7 +200,7 @@ const EVENTS = [
     id: "33",
     title: "Cleanliness drive",
     description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+      "Cleanliness is not just a responsibility it’s a way of life. Inspired by the Swachhata Hi Seva initiative, the day focused on encouraging cleaner surroundings and nurturing a shared sense of responsibility within the community.A brief visit to Zilla Parishad High School, Gandipet added a touch of joy to the day, with light moments shared alongside the students. Small steps like these bring us closer to a healthier, more sustainable future.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
@@ -222,7 +222,7 @@ const EVENTS = [
     title: "Hydra walk",
     description:
       "Rallying for a cause, we took a stand to protect our lakes for a better tomorrow.Joining the Telangana Government’s campaign, we walked together at Gandipet Lake to raise awareness against illegal encroachment Through our Hydra Walk, we spread a strong message on preserving our precious water bodies.The energy, unity, and purpose made every step meaningful.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/hydra1.jpg", "/hydra2.jpg","/hydra3.png", "/hydra4.jpg"]
   },
   {
     id: "39",
