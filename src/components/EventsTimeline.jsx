@@ -34,7 +34,7 @@ const EVENTS = [
     title: "Teachers day-2025",
     description:
      "This Teacher’s Day, we celebrated the mentors who shape our journey with a fun and refreshing segment titled Out of Syllabus. Instead of students answering the questions, we turned the tables and placed our teachers in the spotlight, asking them light-hearted and unexpected questions that filled the room with laughter and warmth.The event blended joy, appreciation, and heartfelt moments as we honoured the educators. Each teacher left with a rose, a smile, and the love of the NSS family — a small gesture of gratitude for their constant guidance and inspiration.",
-    images: ["/Teacher20251.JPG", "/Teacher20252.jpg","/Teacher20253.jpg","/Teacher20254.jpg","/Teacher20256.jpg","/Teacher20257.jpg","/Teacher20258.jpg"]
+    images: ["/Teacher20251.JPG", "/Teacher20252.jpg","/Teacher20253.jpg","/Teacher20254.jpg","/Teacher20256.jpg","/Teacher20259.jpg","/Teacher20258.jpg"]
   },
   {
     id: "6",
