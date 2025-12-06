@@ -14,12 +14,12 @@ const EVENTS = [
     id: "2",
     title: "Blanket Donation",
     description: "This winter, the CBIT NSS Unit organized a heartfelt Blanket Donation Drive, where volunteers stepped out at night to distribute warm blankets to people sleeping outdoors. With 100+ blankets donated, the initiative aimed to bring comfort during the cold weather while fostering compassion and social responsibility among students.The drive was both impactful and uplifting — a reminder of how meaningful even a small act of kindness can be. Sharing smiles, brief conversations, and warmth reinforced the true spirit of service that NSS stands for.",
-    images: ["/Blanket2.jpg", "/Blanket3.jpg"]
+    images: ["/BlanketDonation1.PNG", "/BlanketDonation2.PNG","/BlanketDonation3.PNG","/BlanketDonation4.PNG"]
   },
   {
     id: "3",
     title: "TFT Chandippa",
-    description: "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+    description: " As part of our Tales From Town initiative, we visited the potters’ community in Chandippa to explore the stories shaped by their hands and their craft. Our volunteers spent the day interacting with local potters, learning about their lifestyle, documenting their challenges, and capturing their heartfelt experiences.From watching live pottery take form to hearing the inspiring journeys behind each creation, the session was both insightful and enjoyable. It offered us a refreshing glimpse into a traditional art that continues to thrive through passion and perseverance.Tales From Town truly brought us closer to the roots of our community and reminded us of the beauty in everyday craftsmanship",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
@@ -27,21 +27,21 @@ const EVENTS = [
     title: "Food donation drive",
     description:
       "On 29th September, as floods struck Chaderghat, CBIT NSS stepped forward to support affected families in their time of need. The drive provided meals to over 250 people at the rescue camp, offering comfort and hope during a challenging period. We extend our gratitude to the Hyderabad City Police for their support in ensuring the smooth and effective execution of this effort.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/FoodDonation1.jpeg", "/FoodDonation2.jpeg","/FoodDonation3.jpeg","/FoodDonation4.jpeg"]
   },
   {
     id: "5",
-    title: "Teachers day-2026",
+    title: "Teachers day-2025",
     description:
      "This Teacher’s Day, we celebrated the mentors who shape our journey with a fun and refreshing segment titled Out of Syllabus. Instead of students answering the questions, we turned the tables and placed our teachers in the spotlight, asking them light-hearted and unexpected questions that filled the room with laughter and warmth.The event blended joy, appreciation, and heartfelt moments as we honoured the educators. Each teacher left with a rose, a smile, and the love of the NSS family — a small gesture of gratitude for their constant guidance and inspiration.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Teacher20251.JPG", "/Teacher20252.jpg","/Teacher20253.jpg","/Teacher20254.jpg","/Teacher20256.jpg","/Teacher20257.jpg","/Teacher20258.jpg"]
   },
   {
     id: "6",
     title: "Pcos",
     description:
       "The PCOS Awareness Event opened a gentle space where unspoken stories found voice and understanding began. With Dr. Priti Challa’s compassionate insights, we shed light on the unseen struggles of PCOS — its challenges, its myths, and the quiet strength carried by so many.The session empowered students to listen, learn, and speak openly, reminding us that awareness is both healing and transformative. Together, we took a small but powerful step toward breaking stigma and nurturing a community of empathy and support.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/PCOS1.jpg", "/PCOS2.jpg","/PCOS3.jpg","/PCOS4.jpg","/PCOS5.jpg","/PCOS6.jpg"]
   },
   {
     id: "7",
@@ -61,22 +61,22 @@ const EVENTS = [
     id: "9",
     title: "Tft shilparamam",
     description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+      "At Shilparamam, we walked not just among crafts, but among stories. Tales from Town led us into the lives of artisans whose resilience is woven quietly into every piece they create. What began as a fun, engaging activity became a heartfelt reminder of the realities we rarely see  the strength, the struggle, and the soul behind each handcrafted work. It left everyone inspired to appreciate art not just for its beauty, but for the dedication and passion that bring it to life",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
    {
     id: "10",
     title: "Anti Drug drive",
     description:
-      "The Anti-Drug Drive was an insightful awareness session that highlighted the harsh realities and long-term consequences of drug misuse. It explained how addiction begins, the physical and mental harm it causes, and how it slowly affects academics, relationships, and future opportunities. Through clear examples and interactive discussions, students understood why drug abuse remains one of the biggest threats to youth. The session also stressed the importance of self-awareness, responsible choices, and seeking help when needed. It ended with a strong reminder that choosing a drug-free life is a commitment to a safer, healthier, and brighter future.",
+      "The Anti-Drug Drive centred around the thought, ‘Small high spoils life, real high builds life.’The session explained in an easy and engaging way how even small risks can lead to big consequences Students were encouraged to think, respond, and understand why healthy choices matter.With simple examples and clear messages, it created a strong reminder to stay focused, positive, and drug-free",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
     id: "11",
     title: "Euphoria ",
     description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+      "Brimming with warmth and youthful exuberance, Euphoria unfolded as a graceful celebration, honouring the Executive Board of 2023–2024. The seniors who steered the team with dedication were fondly acknowledged for their guidance and commitment. The evening sparkled with lively moments, cheerful camaraderie, and spirited dancing. With the esteemed faculty gracing the occasion, Euphoria became a truly memorable gathering filled with gratitude, joy, and festive charm",
+    images: ["/Euphoria1.jpg", "/Euphoria2.jpg","/Euphoria3.jpg","/Euphoria4.jpg","/Euphoria5.jpg"]
   },
   {
     id: "12",
@@ -117,7 +117,7 @@ const EVENTS = [
     id: "17",
     title: "Village Camp — Community Connection",
     description:
-      "NSS volunteers spent a few days in a nearby village, running service drives, awareness sessions and informal classes while bonding with the local community and understanding their needs.",
+      "From 19 to 21 December 2024, CBITNSS embarked on a transformative 3-day Village Camp in Chinna Shahpur, bringing health, education, and hope to the community. The program featured free medical checkups, hygiene awareness sessions, and fun, educational activities for local children. Beyond the services, students immersed themselves in village life—conducting surveys, interacting with schoolchildren, and understanding the challenges faced by the residents. Group activities fostered genuine connections between students and villagers, turning every interaction into a shared learning experience. The camp was more than outreach—it was a journey of empathy, service, and inspiring a brighter, healthier tomorrow.",
     images: ["/vcamp1.jpg", "/vcamp2.jpg", "/vcamp3.jpg"]
   },
   {
@@ -159,7 +159,7 @@ const EVENTS = [
     id: "23",
     title: "Clay Ganesh Making — Creative Engagement (school)",
     description:
-      "NSS members visited a primary school and connected with the children through a fun-filled clay modeling activity where everyone made beautiful Ganesh idols together.",
+      "This event brings a creative and eco-friendly Clay Ganesh workshop to Zilla Parishad High School Gandipet, giving students a chance to explore hands-on learning and the essence of sustainable celebrations. Their excitement fills the space as they craft meaningful pieces, discovering joy in art, tradition, and environmental awareness. The experience beautifully blends culture, creativity, and conscious living.",
     images: ["/clayg1.jpg", "/clayg2.jpg", "/clayg3.jpg"]
   },
   {
@@ -190,17 +190,10 @@ const EVENTS = [
     images: ["/HYDRAWALK1.jpg", "/HYDRAWALK2.jpg", "/HYDRAWALK3.png", "/HYDRAWALK4.jpg"]
   },
   {
-    id: "28",
-    title: "Strength in Solidarity — Awareness March",
-    description:
-      "Our Strength in Solidarity march unites students and staff to raise awareness about social justice and community welfare. The march combines peaceful demonstration with outreach and educational talks.",
-    images: ["/sis1.JPG", "/sis2.JPG", "/sis3.jpg"]
-  },
-  {
     id: "29",
     title: "Strength in solidarity ",
     description:
-      "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
+      "Strength in Solidarity brought us together in a united stand against women’s harassment and injustice We walked as one, refusing to remain silent in the face of cruelty and inequalityOur march, though small, was a powerful step toward a just and equal worldIt carried the victim’s story — a heartbreaking reminder of the pain enduredEach candle became a flicker of hope in the darkness, lighting the path toward a future where such tragedies are unthinkable",
     images: ["/Soliditary0.jpg", "/Soliditary1.jpg","/Soliditary2.jpg","/Soliditary3.jpg","/Soliditary4.jpg"]
   },
  {
