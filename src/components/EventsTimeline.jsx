@@ -14,7 +14,7 @@ const EVENTS = [
     id: "2",
     title: "Blanket Donation",
     description: "This winter, the CBIT NSS Unit organized a heartfelt Blanket Donation Drive, where volunteers stepped out at night to distribute warm blankets to people sleeping outdoors. With 100+ blankets donated, the initiative aimed to bring comfort during the cold weather while fostering compassion and social responsibility among students.The drive was both impactful and uplifting — a reminder of how meaningful even a small act of kindness can be. Sharing smiles, brief conversations, and warmth reinforced the true spirit of service that NSS stands for.",
-    images: ["/BlanketDonation1.PNG", "/BlanketDonation2.PNG","/BlanketDonation3.PNG","/BlanketDonation4.PNG"]
+    images: ["/Blanket2.jpg", "/BlanketDonation2.PNG","/BlanketDonation3.PNG","/BlanketDonation4.PNG"]
   },
   {
     id: "3",
