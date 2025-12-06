@@ -12,232 +12,204 @@ const EVENTS = [
   },
   {
     id: "2",
-    title: "NSS Summit — College Collaboration",
-    description:
-      "NOT ME, BUT YOU! the first Inter-College NSS Summit Hyderabad set out to strengthen connectivity between NSS units across institutions. Representatives from IIT Hyderabad, SNIST, VNR VJIET, KLH, GCET, JNGPC, GRIET, and MVSR participated in a series of collaborative interactions and shared learning experiences. Individually, every NSS unit carries the same motto and drive to serve but together, that commitment can create a far greater impact. This summit bridged the long-standing gap in interaction between teams, enabling meaningful exchanges and new connections. The experience sparked fresh perspectives, stronger networks, and a renewed sense of collective purpose.",
-    images: ["/sum1.jpg", "/sum2.jpg", "/sum3.jpg", "/sum4.jpg"]
-  },
-  {
-    id: "5",
-    title: "Strength in Solidarity — Awareness March",
-    description:
-      "Our Strength in Solidarity march unites students and staff to raise awareness about social justice and community welfare. The march combines peaceful demonstration with outreach and educational talks.",
-    images: ["/sis1.JPG", "/sis2.JPG", "/sis3.jpg"]
-  },
-  {
-    id: "3",
-    title: "Be My Santa — Festive Giving",
-    description:
-      "Be My Santa” was a heartwarming initiative, bringing the spirit of giving to life. Students visited a local children’s orphanage, where the children’s wishes were thoughtfully written on chits and displayed on the campus Christmas tree. Each student picked a chit and personally fulfilled the wish, turning simple gestures into moments of joy. Acting as a bridge between the orphanage and the campus, NSS CBIT transformed the festive season into a celebration of compassion, kindness, and community, leaving a lasting impact on both the children and the students",
-    images: ["/santa1.jpg", "/santa2.jpg", "/santa3.jpg"]
-  },
-  {
-    id: "7",
-    title: "Blood Donation Drive — Save Lives",
-    description:
-      " On 6th and 7th February, NSS CBIT, in collaboration with the Lions Club, organized a highly successful blood donation camp that brought together the CBIT community for a life-saving cause. Both faculty members and students actively participated, demonstrating remarkable generosity and social responsibility. The camp collected an impressive total of 470 units of blood, making a significant contribution to local hospitals and patients in need. Events like these highlight the spirit of compassion, unity, and service that defines NSS CBIT, proving how small efforts can create a profound impact on the lives of many.",
-    images: ["/bd1.jpg", "/bd2.jpg", "/bd3.jpg"]
-  },
-  {
-    id: "8",
-    title: "Old Age Home Visit — Community Care",
-    description:
-      "We visit local old age homes to spend time with residents, listen to their stories and organize recreational activities. These visits build empathy, intergenerational bonds and a sense of shared community.",
-    images: ["/oldage1.jpg", "/oldage2.jpg", "/oldage3.jpg"]
-  },
-  {
-    id: "9",
-    title: "Hydra Walk — Lake Protection Campaign",
-    description:
-      "Hydra Walk is a lake protection and cleanup campaign focused on raising awareness about encroachment and pollution. Volunteers participate in cleanup, advocacy and community education to preserve local water bodies.",
-    images: ["/HYDRAWALK1.jpg", "/HYDRAWALK2.jpg", "/HYDRAWALK3.png", "/HYDRAWALK4.jpg"]
-  },
-  {
-    id: "11",
-    title: "Clay Ganesh Making — Creative Engagement (school)",
-    description:
-      "NSS members visited a primary school and connected with the children through a fun-filled clay modeling activity where everyone made beautiful Ganesh idols together.",
-    images: ["/clayg1.jpg", "/clayg2.jpg", "/clayg3.jpg"]
-  },
-  {
-    id: "12",
-    title: "Orientation — Welcome to NSS",
-    description:
-      "CBIT NSS welcomed new volunteers and introduced them to the club's mission, values and activities. Orientation sessions help new members understand how they can contribute to our social service initiatives.",
-    images: ["/golconda1.jpg", "/golconda2.jpg", "/golconda3.jpg"]
-  },
-  {
-    id: "13",
-    title: "Women's Day — Celebrating Empowerment",
-    description:
-      "CBIT NSS celebrated International Women's Day by organizing empowering sessions and activities recognizing the achievements of women and promoting gender equality in our community.",
-    images: ["/womday1.jpg", "/womday2.jpg", "/womday3.jpg"]
-  },
-  {
-    id: "14",
-    title: "Village Camp — Community Connection",
-    description:
-      "NSS volunteers spent a few days in a nearby village, running service drives, awareness sessions and informal classes while bonding with the local community and understanding their needs.",
-    images: ["/vcamp1.jpg", "/vcamp2.jpg", "/vcamp3.jpg"]
-  },
-  {
-    id: "15",
-    title: "YUVA — National Youth Contest",
-    description:
-      "YUVA 2025 united talented youth from across India in a national-level contest celebrating leadership, creativity, and social impact. Through debates, cultural performances, tech challenges, and a village immersion to identify local issues and propose solutions, participants showcased their skills and potential. NSS managed the event with energy and dedication, while the final round was judged by Manoj Khanna (NSS National President Medal awardee), Aneboina Nikhil (Founder of NSS Yuva), and Yamini Arlibandi (National-level State Cultural Representative). YUVA 2025 was a vibrant platform for expression, collaboration, and turning ideas into action.",
-    images: ["/yuva1.jpg", "/yuva2.jpg", "/yuva3.jpg"]
-  },
-  {
-    id:"16",
-    title: "Teachers' Day Celebration",
-    description:"This Teacher’s Day, we celebrated the mentors who guide our journey with a fun and lively twistStudents put on special performances that added colour and energy to the celebration. Our Directors addressed the gathering with an inspiring speech, reminding us of the invaluable role teachers play in shaping our futureThe event blended joy, gratitude, and heartfelt moments as we honoured our educatorsEvery teacher walked away with a rose, a smile, and the warmth of the NSS family — a simple gesture to thank them for their endless support and inspiration ",
-    images: ["/Teachers2024Day1.jpg", "/Teachers2024Day2.jpg","/Teachers2024Day3.jpg"]
-  },
-  {
-    id: "17",
     title: "Blanket Donation",
     description: "This winter, the CBIT NSS Unit organized a heartfelt Blanket Donation Drive, where volunteers stepped out at night to distribute warm blankets to people sleeping outdoors. With 100+ blankets donated, the initiative aimed to bring comfort during the cold weather while fostering compassion and social responsibility among students.The drive was both impactful and uplifting — a reminder of how meaningful even a small act of kindness can be. Sharing smiles, brief conversations, and warmth reinforced the true spirit of service that NSS stands for.",
     images: ["/Blanket2.jpg", "/Blanket3.jpg"]
   },
   {
-    id: "42",
+    id: "3",
     title: "TFT Chandippa",
     description: "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "43",
-    title: "Girl child day",
-    description:
-      "The day unfolded with powerful performances and meaningful messages celebrating and empowering young girls. With collaboration from clubs like Chhaaya, United Dance Crew, Chaitanya Geethi, Chaitanya Vaadya, and Chaitanya Suraksha, the event showcased a captivating street play, energetic dance acts, and impactful musical pieces that highlighted the importance of equality. More than a celebration, it became a call to action encouraging everyone to raise awareness, stand for empowerment, and work toward a more inclusive future.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
-  },
-  {
-    id: "18",
+    id: "4",
     title: "Food donation drive",
     description:
       "On 29th September, as floods struck Chaderghat, CBIT NSS stepped forward to support affected families in their time of need. The drive provided meals to over 250 people at the rescue camp, offering comfort and hope during a challenging period. We extend our gratitude to the Hyderabad City Police for their support in ensuring the smooth and effective execution of this effort.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "19",
+    id: "5",
     title: "Teachers day-2026",
     description:
      "This Teacher’s Day, we celebrated the mentors who shape our journey with a fun and refreshing segment titled Out of Syllabus. Instead of students answering the questions, we turned the tables and placed our teachers in the spotlight, asking them light-hearted and unexpected questions that filled the room with laughter and warmth.The event blended joy, appreciation, and heartfelt moments as we honoured the educators. Each teacher left with a rose, a smile, and the love of the NSS family — a small gesture of gratitude for their constant guidance and inspiration.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "20",
+    id: "6",
     title: "Pcos",
     description:
       "The PCOS Awareness Event opened a gentle space where unspoken stories found voice and understanding began. With Dr. Priti Challa’s compassionate insights, we shed light on the unseen struggles of PCOS — its challenges, its myths, and the quiet strength carried by so many.The session empowered students to listen, learn, and speak openly, reminding us that awareness is both healing and transformative. Together, we took a small but powerful step toward breaking stigma and nurturing a community of empathy and support.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "21",
+    id: "7",
     title: "Clay ganesh orphanage",
     description:
       "On the occasion of Ganesh Chaturthi, the day was joyfully spent at an orphanage where children enthusiastically crafted eco-friendly Ganesh idols. The space buzzed with laughter, creativity, and festive spirit as the kids shaped clay and enjoyed playful moments together. Fun activities, games, and their bright energy made the entire day lively and heartwarming. The celebration became truly special, blending tradition with togetherness and creating memories to cherish. ",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
-  {
-    id: "22",
+   {
+    id: "8",
     title: "Anti ragging walk ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
-  {
-    id: "23",
+   {
+    id: "9",
     title: "Tft shilparamam",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
-  {
-    id: "24",
+   {
+    id: "10",
     title: "Anti Drug drive",
     description:
       "The Anti-Drug Drive was an insightful awareness session that highlighted the harsh realities and long-term consequences of drug misuse. It explained how addiction begins, the physical and mental harm it causes, and how it slowly affects academics, relationships, and future opportunities. Through clear examples and interactive discussions, students understood why drug abuse remains one of the biggest threats to youth. The session also stressed the importance of self-awareness, responsible choices, and seeking help when needed. It ended with a strong reminder that choosing a drug-free life is a commitment to a safer, healthier, and brighter future.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "25",
+    id: "11",
     title: "Euphoria ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "26",
-    title: "Women's Day",
+    id: "12",
+    title: "Women's Day — Celebrating Empowerment",
     description:
       "On Women’s Day, a special session was held featuring Dr. Tejaswini Manognya, whose inspiring presence added depth and meaning to the occasion. Her thoughtful insights, real-life experiences, and empowering message left the audience truly motivated. She spoke about confidence, resilience, and the importance of women supporting one another. The atmosphere was filled with admiration, encouragement, and a renewed sense of appreciation for the strength and achievements of women.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/womday1.jpg", "/womday2.jpg", "/womday3.jpg"]
   },
   {
-    id: "27",
+    id: "13",
     title: "TFT Charminar",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "28",
+    id: "14",
+    title: "Blood Donation Drive — Save Lives",
+    description:
+      " On 6th and 7th February, NSS CBIT, in collaboration with the Lions Club, organized a highly successful blood donation camp that brought together the CBIT community for a life-saving cause. Both faculty members and students actively participated, demonstrating remarkable generosity and social responsibility. The camp collected an impressive total of 470 units of blood, making a significant contribution to local hospitals and patients in need. Events like these highlight the spirit of compassion, unity, and service that defines NSS CBIT, proving how small efforts can create a profound impact on the lives of many.",
+    images: ["/bd1.jpg", "/bd2.jpg", "/bd3.jpg"]
+  },
+  {
+    id: "15",
     title: "Khadi",
     description:
       "Celebrating the spirit of India through its timeless craft, Khadi, this event highlighted heritage, sustainability, and pride. The event celebrated handloom artisans, revived support for indigenous industries, and encouraged students to embrace Khadi in their everyday lives.In collaboration with Khadi India and the Telangana Khadi and Village Industries Commission(KVIC), NSS members showcased Khadi’s cultural, economic, and social significance through debates, quizzes, essay competitions, and interactive sessions.  By weaving together patriotism with sustainability, the initiative inspired the youth to appreciate India’s rich traditions while taking an active role in building a self-reliant and eco-conscious future.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "31",
+    id: "16",
+    title: "YUVA — National Youth Contest",
+    description:
+      "YUVA 2025 united talented youth from across India in a national-level contest celebrating leadership, creativity, and social impact. Through debates, cultural performances, tech challenges, and a village immersion to identify local issues and propose solutions, participants showcased their skills and potential. NSS managed the event with energy and dedication, while the final round was judged by Manoj Khanna (NSS National President Medal awardee), Aneboina Nikhil (Founder of NSS Yuva), and Yamini Arlibandi (National-level State Cultural Representative). YUVA 2025 was a vibrant platform for expression, collaboration, and turning ideas into action.",
+    images: ["/yuva1.jpg", "/yuva2.jpg", "/yuva3.jpg"]
+  },
+  {
+    id: "17",
+    title: "Village Camp — Community Connection",
+    description:
+      "NSS volunteers spent a few days in a nearby village, running service drives, awareness sessions and informal classes while bonding with the local community and understanding their needs.",
+    images: ["/vcamp1.jpg", "/vcamp2.jpg", "/vcamp3.jpg"]
+  },
+  {
+    id: "18",
+    title: "Be My Santa — Festive Giving",
+    description:
+      "Be My Santa” was a heartwarming initiative, bringing the spirit of giving to life. Students visited a local children’s orphanage, where the children’s wishes were thoughtfully written on chits and displayed on the campus Christmas tree. Each student picked a chit and personally fulfilled the wish, turning simple gestures into moments of joy. Acting as a bridge between the orphanage and the campus, NSS CBIT transformed the festive season into a celebration of compassion, kindness, and community, leaving a lasting impact on both the children and the students",
+    images: ["/santa1.jpg", "/santa2.jpg", "/santa3.jpg"]
+  },
+  {
+    id: "19",
     title: "Watch for cause ",
     description:
       " On October 30th,a lively and impactful fundraiser titled “Watch for a Cause was conducted .The iconic film Gabbar Singh was screened at CBIT, drawing over 670 enthusiastic students. The event aimed to raise funds for the upcoming NSS Village Camp and successfully collected around ₹27,000 through ticket sales. Watch for a Cause turned a simple movie screening into a powerful initiative, perfectly blending the campus’s love for cinema with a strong commitment to community service. The event not only entertained but also united students in a shared purpose, reflecting the true spirit of NSS and the CBIT student community.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "33",
+    id: "20",
+    title: "NSS Summit — College Collaboration",
+    description:
+      "NOT ME, BUT YOU! the first Inter-College NSS Summit Hyderabad set out to strengthen connectivity between NSS units across institutions. Representatives from IIT Hyderabad, SNIST, VNR VJIET, KLH, GCET, JNGPC, GRIET, and MVSR participated in a series of collaborative interactions and shared learning experiences. Individually, every NSS unit carries the same motto and drive to serve but together, that commitment can create a far greater impact. This summit bridged the long-standing gap in interaction between teams, enabling meaningful exchanges and new connections. The experience sparked fresh perspectives, stronger networks, and a renewed sense of collective purpose.",
+    images: ["/sum1.jpg", "/sum2.jpg", "/sum3.jpg", "/sum4.jpg"]
+  },
+  {
+    id: "21",
     title: "Cleanliness drive",
     description:
       " Cleanliness is not just a responsibility it’s a way of life. Inspired by the Swachhata Hi Seva initiative, the day focused on encouraging cleaner surroundings and nurturing a shared sense of responsibility within the community.A brief visit to Zilla Parishad High School, Gandipet added a touch of joy to the day, with light moments shared alongside the students. Small steps like these bring us closer to a healthier, more sustainable future.",
     images: ["/cleanliness1.jpg", "/cleanliness2.jpg","/cleanliness4.jpg","/cleanliness5.jpg","/cleanliness7.jpg","/cleanliness8.jpg"]
   },
   {
-    id: "34",
-    title: "Girl child day",
+    id: "22",
+    title: "Girl child day 2024",
     description:
       "The day unfolded with powerful performances and meaningful messages celebrating and empowering young girls. With collaboration from clubs like Chhaaya, United Dance Crew, Chaitanya Geethi, Chaitanya Vaadya, and Chaitanya Suraksha, the event showcased a captivating street play, energetic dance acts, and impactful musical pieces that highlighted the importance of equality. More than a celebration, it became a call to action encouraging everyone to raise awareness, stand for empowerment, and work toward a more inclusive future.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "37",
+    id: "23",
+    title: "Clay Ganesh Making — Creative Engagement (school)",
+    description:
+      "NSS members visited a primary school and connected with the children through a fun-filled clay modeling activity where everyone made beautiful Ganesh idols together.",
+    images: ["/clayg1.jpg", "/clayg2.jpg", "/clayg3.jpg"]
+  },
+  {
+    id: "24",
+    title: "Orientation — Welcome to NSS",
+    description:
+      "CBIT NSS welcomed new volunteers and introduced them to the club's mission, values and activities. Orientation sessions help new members understand how they can contribute to our social service initiatives.",
+    images: ["/golconda1.jpg", "/golconda2.jpg", "/golconda3.jpg"]
+  },
+  {
+    id:"25",
+    title: "Teachers' Day Celebration",
+    description:"This Teacher’s Day, we celebrated the mentors who guide our journey with a fun and lively twistStudents put on special performances that added colour and energy to the celebration. Our Directors addressed the gathering with an inspiring speech, reminding us of the invaluable role teachers play in shaping our futureThe event blended joy, gratitude, and heartfelt moments as we honoured our educatorsEvery teacher walked away with a rose, a smile, and the warmth of the NSS family — a simple gesture to thank them for their endless support and inspiration ",
+    images: ["/Teachers2024Day1.jpg", "/Teachers2024Day2.jpg","/Teachers2024Day3.jpg"]
+  },
+  {
+    id: "26",
     title: "Orphanage visit ",
     description:
       "Finding joy in the simplest moments with our new friends at the children’s home.Our visit was filled with heartfelt interactions, from playful games to stories that lit up their eyes.We spent meaningful time with both the children and the elderly, sharing warmth and laughter.Every smile we saw felt like a reminder of the power of kindness. A day that touched our hearts and stayed in our memories.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
   {
-    id: "38",
-    title: "Hydra walk",
+    id: "27",
+    title: "Hydra Walk — Lake Protection Campaign",
     description:
       "Rallying for a cause, we took a stand to protect our lakes for a better tomorrow.Joining the Telangana Government’s campaign, we walked together at Gandipet Lake to raise awareness against illegal encroachment Through our Hydra Walk, we spread a strong message on preserving our precious water bodies.The energy, unity, and purpose made every step meaningful.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/HYDRAWALK1.jpg", "/HYDRAWALK2.jpg", "/HYDRAWALK3.png", "/HYDRAWALK4.jpg"]
   },
   {
-    id: "39",
+    id: "28",
+    title: "Strength in Solidarity — Awareness March",
+    description:
+      "Our Strength in Solidarity march unites students and staff to raise awareness about social justice and community welfare. The march combines peaceful demonstration with outreach and educational talks.",
+    images: ["/sis1.JPG", "/sis2.JPG", "/sis3.jpg"]
+  },
+  {
+    id: "29",
     title: "Strength in solidarity ",
     description:
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/Soliditary0.jpg", "/Soliditary1.jpg","/Soliditary2.jpg","/Soliditary3.jpg","/Soliditary4.jpg"]
   },
-  {
-    id: "40",
+ {
+    id: "30",
     title: "Oldage Home visit",
     description:
       " More than just a place, this is a second home where one finds care, laughter, and companionship; a place where our presence offered a brief, happy break in their daily rhythm. We spent time listening to their stories, sharing smiles, and creating a joyful atmosphere.Small games, songs, and conversations turned into heartfelt memories.The visit reminded everyone of the value of love, respect, and human connection.",
     images: ["/oldagehome1.jpg", "/oldagehome2.jpg","/oldagehome3.jpg","/oldagehome4.jpg"]
-  }
+  } 
 ];
 
 export default function EventsTimeline() {
