@@ -36,14 +36,14 @@ const EVENTS = [
     title: "Blood Donation Drive — Save Lives",
     description:
       " On 6th and 7th February, NSS CBIT, in collaboration with the Lions Club, organized a highly successful blood donation camp that brought together the CBIT community for a life-saving cause. Both faculty members and students actively participated, demonstrating remarkable generosity and social responsibility. The camp collected an impressive total of 470 units of blood, making a significant contribution to local hospitals and patients in need. Events like these highlight the spirit of compassion, unity, and service that defines NSS CBIT, proving how small efforts can create a profound impact on the lives of many.",
-    images: ["/bd1.jpg", "/bd2.jpg", "/bd3.jpg"]
+    images: ["/Blood1.jpeg","/Blood2.jpeg","/Blood3.jpeg","/Blood4.jpeg","/Blood5.jpeg"]
   },
   {
     id: "8",
     title: "Old Age Home Visit — Community Care",
     description:
       "We visit local old age homes to spend time with residents, listen to their stories and organize recreational activities. These visits build empathy, intergenerational bonds and a sense of shared community.",
-    images: ["/oldage1.jpg", "/oldage2.jpg", "/oldage3.jpg"]
+    images: ["/oldage1.jpg", "/oldage2.jpg", "/oldage3.jpg", "/oldage4.jpg"]
   },
   {
     id: "9",
@@ -97,7 +97,7 @@ const EVENTS = [
     id: "17",
     title: "Blanket Donation",
     description: "This winter, the CBIT NSS Unit organized a heartfelt Blanket Donation Drive, where volunteers stepped out at night to distribute warm blankets to people sleeping outdoors. With 100+ blankets donated, the initiative aimed to bring comfort during the cold weather while fostering compassion and social responsibility among students.The drive was both impactful and uplifting — a reminder of how meaningful even a small act of kindness can be. Sharing smiles, brief conversations, and warmth reinforced the true spirit of service that NSS stands for.",
-    images: ["/Blanket2.jpg", "/BlanketDonation2.PNG","/BlanketDonation3.PNG","/BlanketDonation4.PNG"]
+    images: ["/BlanketDonation3.png", "/BlanketDonation1.png","/BlanketDonation2.png","/BlanketDonation4.png"]
   },
   {
     id: "3",
@@ -131,7 +131,7 @@ const EVENTS = [
     title: "Clay ganesh orphanage",
     description:
       "On the occasion of Ganesh Chaturthi, the day was joyfully spent at an orphanage where children enthusiastically crafted eco-friendly Ganesh idols. The space buzzed with laughter, creativity, and festive spirit as the kids shaped clay and enjoyed playful moments together. Fun activities, games, and their bright energy made the entire day lively and heartwarming. The celebration became truly special, blending tradition with togetherness and creating memories to cherish. ",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/ganeshOrpah1.png", "/GaneshOrpah2.png","/GaneshOrpah3.png","/GaneshOrpah4.png"]
   },
    {
     id: "8",
@@ -145,14 +145,14 @@ const EVENTS = [
     title: "Tft shilparamam",
     description:
       "At Shilparamam, we walked not just among crafts, but among stories. Tales from Town led us into the lives of artisans whose resilience is woven quietly into every piece they create. What began as a fun, engaging activity became a heartfelt reminder of the realities we rarely see  the strength, the struggle, and the soul behind each handcrafted work. It left everyone inspired to appreciate art not just for its beauty, but for the dedication and passion that bring it to life",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Shilparamam1.jpg", "/Shilparamam2.jpg","/Shilparamam3.jpg","/Shilparamam4.jpg"]
   },
    {
     id: "10",
     title: "Anti Drug drive",
     description:
       "The Anti-Drug Drive centred around the thought, ‘Small high spoils life, real high builds life.’The session explained in an easy and engaging way how even small risks can lead to big consequences Students were encouraged to think, respond, and understand why healthy choices matter.With simple examples and clear messages, it created a strong reminder to stay focused, positive, and drug-free",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/AntiDrug1.jpeg", "/AntiDrug2.jpeg","/AntiDrug3.jpeg","/AntiDrug4.jpeg"]
   },
   {
     id: "11",
@@ -175,19 +175,13 @@ const EVENTS = [
       "Add event description here. This is a placeholder event that you can customize with your own details, images and information.",
     images: ["/placeholder1.jpg", "/placeholder2.jpg"]
   },
-  {
-    id: "14",
-    title: "Blood Donation Drive — Save Lives",
-    description:
-      " On 6th and 7th February, NSS CBIT, in collaboration with the Lions Club, organized a highly successful blood donation camp that brought together the CBIT community for a life-saving cause. Both faculty members and students actively participated, demonstrating remarkable generosity and social responsibility. The camp collected an impressive total of 470 units of blood, making a significant contribution to local hospitals and patients in need. Events like these highlight the spirit of compassion, unity, and service that defines NSS CBIT, proving how small efforts can create a profound impact on the lives of many.",
-    images: ["/bd1.jpg", "/bd2.jpg", "/bd3.jpg"]
-  },
+
   {
     id: "15",
     title: "Khadi",
     description:
       "Celebrating the spirit of India through its timeless craft, Khadi, this event highlighted heritage, sustainability, and pride. The event celebrated handloom artisans, revived support for indigenous industries, and encouraged students to embrace Khadi in their everyday lives.In collaboration with Khadi India and the Telangana Khadi and Village Industries Commission(KVIC), NSS members showcased Khadi’s cultural, economic, and social significance through debates, quizzes, essay competitions, and interactive sessions.  By weaving together patriotism with sustainability, the initiative inspired the youth to appreciate India’s rich traditions while taking an active role in building a self-reliant and eco-conscious future.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Khadi1.jpg", "/Khadi2.jpg","/Khadi3.jpg","/Khadi4.jpg"]
   },
   {
     id: "16",
@@ -229,7 +223,7 @@ const EVENTS = [
     title: "Cleanliness drive",
     description:
       " Cleanliness is not just a responsibility it’s a way of life. Inspired by the Swachhata Hi Seva initiative, the day focused on encouraging cleaner surroundings and nurturing a shared sense of responsibility within the community.A brief visit to Zilla Parishad High School, Gandipet added a touch of joy to the day, with light moments shared alongside the students. Small steps like these bring us closer to a healthier, more sustainable future.",
-    images: ["/cleanliness1.jpg", "/cleanliness2.jpg","/cleanliness4.jpg","/cleanliness5.jpg","/cleanliness7.jpg","/cleanliness8.jpg"]
+    images: ["/Copy of Cleanliness1.heif", "/Copy of Cleanliness2.heif","/Copy of Cleanliness4.heif","/Copy of Cleanliness5.heif","/Copy of Cleanliness7.heif","/Copy of Cleanliness8.heif"]
   },
   {
     id: "22",
@@ -256,35 +250,35 @@ const EVENTS = [
     id:"25",
     title: "Teachers' Day Celebration",
     description:"This Teacher’s Day, we celebrated the mentors who guide our journey with a fun and lively twistStudents put on special performances that added colour and energy to the celebration. Our Directors addressed the gathering with an inspiring speech, reminding us of the invaluable role teachers play in shaping our futureThe event blended joy, gratitude, and heartfelt moments as we honoured our educatorsEvery teacher walked away with a rose, a smile, and the warmth of the NSS family — a simple gesture to thank them for their endless support and inspiration ",
-    images: ["/Teachers2024Day1.jpg", "/Teachers2024Day2.jpg","/Teachers2024Day3.jpg"]
+    images: ["/Copy of Teachers2024Day1.JPG", "/Copy of Teachers2024Day2.JPG","/Copy of Teachers2024Day3.JPG"]
   },
   {
     id: "26",
     title: "Orphanage visit ",
     description:
       "Finding joy in the simplest moments with our new friends at the children’s home.Our visit was filled with heartfelt interactions, from playful games to stories that lit up their eyes.We spent meaningful time with both the children and the elderly, sharing warmth and laughter.Every smile we saw felt like a reminder of the power of kindness. A day that touched our hearts and stayed in our memories.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/Orphanage1.jpg", "/Orphanage2.jpg","/Orphanage3.jpg","/Orphanage4.jpg"]
   },
   {
     id: "27",
     title: "Hydra Walk — Lake Protection Campaign",
     description:
       "Rallying for a cause, we took a stand to protect our lakes for a better tomorrow.Joining the Telangana Government’s campaign, we walked together at Gandipet Lake to raise awareness against illegal encroachment Through our Hydra Walk, we spread a strong message on preserving our precious water bodies.The energy, unity, and purpose made every step meaningful.",
-    images: ["/HYDRAWALK1.jpg", "/HYDRAWALK2.jpg", "/HYDRAWALK3.png", "/HYDRAWALK4.jpg"]
+    images: ["/HYDRAWALK1.jpeg", "/HYDRAWALK2.jpeg", "/HYDRAWALK3.jpeg", "/HYDRAWALK4.jpeg"]
   },
   {
     id: "29",
     title: "Strength in solidarity ",
     description:
       "Strength in Solidarity brought us together in a united stand against women’s harassment and injustice We walked as one, refusing to remain silent in the face of cruelty and inequalityOur march, though small, was a powerful step toward a just and equal worldIt carried the victim’s story — a heartbreaking reminder of the pain enduredEach candle became a flicker of hope in the darkness, lighting the path toward a future where such tragedies are unthinkable",
-    images: ["/Soliditary0.jpg", "/Soliditary1.jpg","/Soliditary2.jpg","/Soliditary3.jpg","/Soliditary4.jpg"]
+    images: ["/Soliditary0.jpeg", "/Soliditary1.jpeg","/Soliditary2.jpeg","/Soliditary3.heif","/Soliditary4.jpeg"]
   },
  {
     id: "30",
     title: "Oldage Home visit",
     description:
       " More than just a place, this is a second home where one finds care, laughter, and companionship; a place where our presence offered a brief, happy break in their daily rhythm. We spent time listening to their stories, sharing smiles, and creating a joyful atmosphere.Small games, songs, and conversations turned into heartfelt memories.The visit reminded everyone of the value of love, respect, and human connection.",
-    images: ["/oldagehome1.jpg", "/oldagehome2.jpg","/oldagehome3.jpg","/oldagehome4.jpg"]
+    images: ["/Copy of Oldagehome1.HEIC", "/Copy of Oldagehome2.HEIC","/Copy of Oldagehome3.HEIC","/Copy of Oldagehome4.HEIC"]
   } 
 ];
 
@@ -451,6 +445,8 @@ export default function EventsTimeline() {
 /**
  * Sub-component for automatic horizontal image scrolling
  */
+import FallbackImage from './FallbackImage';
+
 function ImageCarousel({ images }) {
   const scrollRef = useRef(null);
 
@@ -496,7 +492,7 @@ function ImageCarousel({ images }) {
       >
         {images.map((src, idx) => (
           <div key={idx} className="flex-shrink-0 w-[80%] md:w-[55%] aspect-video relative rounded-xl overflow-hidden border border-gray-800/30 bg-[#111]">
-            <img src={src} alt={`Event image ${idx}`} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
+            <FallbackImage src={src} alt={`Event image ${idx}`} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
           </div>
         ))}
         {/* Duplicate some images at the end to make the looping smoother if needed */}
