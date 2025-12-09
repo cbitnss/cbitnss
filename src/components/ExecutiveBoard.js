@@ -12,16 +12,16 @@ import Image from "next/image";
 const executives = [
   { name: "Voggu Nikhil", title: "President",id:"NV25001", imageUrl: "/arang1.jpg" },
   { name: "Surya Raghava", title: "Vice President",id:"NV25001", imageUrl: "/akhilesh.png" },
-  { name: "Theetla Sunny", title: "General Secretary",id:"NV25001", imageUrl: "/img_sunny.HEIC" },
+  { name: "Theetla Sunny", title: "General Secretary",id:"NV25001", imageUrl: "/Sunny.jpg" },
   { name: "Kulkarni Nehasri", title: "Joint Secretary - Documentation",id:"NV25001", imageUrl: "/img_neha.jpg" },
   { name: "Hrushikesh Reddy", title: "Joint Secretary - Logistics",id:"NV25001", imageUrl: "/akhilesh.png" },
-  { name: "Krishna Sushant", title: "Treasurer",id:"NV25001", imageUrl: "/akhilesh.png" },
+  { name: "Krishna Sushant", title: "Treasurer",id:"NV25001", imageUrl: "/Sushant.jpg" },
   { name: "Rishitha Tatipelli", title: "Women's Administrator",id:"NV25001", imageUrl: "/akhilesh.png" },
-  { name: "Swetha Voliga", title: "Road Safety Coordinator",id:"NV25001", imageUrl: "/akhilesh.png" },
-  { name: "vidhyullatha", title: "Head of EXT. Affairs",id:"NV25001", imageUrl: "/akhilesh.png" },
+  { name: "Swetha Voliga", title: "Road Safety Coordinator",id:"NV25001", imageUrl: "/Swetha.jpg" },
+  { name: "vidhyullatha", title: "Head of EXT. Affairs",id:"NV25001", imageUrl: "/vidhyullatha.jpg" },
   { name: "Shashank T", title: "Events Head",id:"NV25001", imageUrl: "/akhilesh.png" },
   { name: "Tanmayi Nadipalli", title: "Technical Head",id:"NV25001", imageUrl: "/akhilesh.png" },
-  { name: "Varshini Kasani", title: "Design Head",id:"NV25001", imageUrl: "/img_varsh.HEIC" },
+  { name: "Varshini Kasani", title: "Design Head",id:"NV25001", imageUrl: "/Varshini.jpg" },
   { name: "Pragna T", title: "Publicity & Media Head",id:"NV25001", imageUrl: "/akhilesh.png" }
 ];
 

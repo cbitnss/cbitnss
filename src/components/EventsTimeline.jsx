@@ -138,7 +138,7 @@ const EVENTS = [
     title: "Watch for cause ",
     description:
       " On October 30th,a lively and impactful fundraiser titled “Watch for a Cause was conducted .The iconic film Gabbar Singh was screened at CBIT, drawing over 670 enthusiastic students. The event aimed to raise funds for the upcoming NSS Village Camp and successfully collected around ₹27,000 through ticket sales. Watch for a Cause turned a simple movie screening into a powerful initiative, perfectly blending the campus’s love for cinema with a strong commitment to community service. The event not only entertained but also united students in a shared purpose, reflecting the true spirit of NSS and the CBIT student community.",
-    images: ["/placeholder1.jpg", "/placeholder2.jpg"]
+    images: ["/watch1.jpeg", "/watch2.jpeg"]
   },
   {
     id: "20",
