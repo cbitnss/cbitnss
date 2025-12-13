@@ -104,46 +104,56 @@ export default function EmergencyServicesMain() {
           padding: 100px 20px 80px;
           text-align: center;
           background: linear-gradient(180deg, rgba(242, 34, 50, 0.1) 0%, transparent 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 70vh;
         }
 
         .hero-title {
           font-size: 3.5rem;
           font-weight: 800;
-          margin-bottom: 24px;
+          margin-bottom: 30px;
           background: linear-gradient(135deg, #F22232, #ffffff);
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
           animation: fadeInUp 0.8s ease-out;
+          text-align: center;
         }
 
         .hero-subtitle {
           font-size: 1.5rem;
           color: #d1d5db;
           max-width: 900px;
-          margin: 0 auto 50px;
+          margin: 0 auto 40px;
           line-height: 1.8;
           animation: fadeInUp 0.8s ease-out 0.2s both;
+          text-align: center;
         }
 
         .cta-buttons {
           display: flex;
           gap: 30px;
           justify-content: center;
+          align-items: center;
           flex-wrap: wrap;
           animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .cta-button {
-          padding: 18px 45px;
-          font-size: 1.2rem;
+          padding: 24px 70px;
+          font-size: 1.4rem;
           font-weight: 700;
-          border-radius: 50px;
+          border-radius: 15px;
           text-decoration: none;
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
           display: inline-block;
+          min-width: 320px;
+          text-align: center;
         }
 
         .cta-button::before {
@@ -436,11 +446,23 @@ export default function EmergencyServicesMain() {
           .cta-buttons {
             flex-direction: column;
             align-items: center;
+            width: 100%;
           }
 
           .cta-button {
-            width: 100%;
-            max-width: 300px;
+            width: 85%;
+            max-width: 450px;
+            padding: 22px 50px;
+            font-size: 1.3rem;
+            min-width: unset;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .cta-button {
+            width: 90%;
+            padding: 20px 40px;
+            font-size: 1.2rem;
           }
         }
       `}</style>

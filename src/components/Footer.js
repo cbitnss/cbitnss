@@ -45,7 +45,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-400">
               <li>CBIT, Gandipet</li>
               <li>Hyderabad - 500075</li>
-              <li>Email: nsscbit19@gmail.com</li>
+              <li>Email: cbitnss@cbit.ac.in</li>
               <li>Emergency: +91 7396998809</li>
             </ul>
           </div>
