@@ -1,23 +1,23 @@
-"use client";
-import React, { useState } from "react";
-import { BarcodeScannerComponent } from "react-qr-barcode-scanner";
+"use client"
 
-export default function BarcodeScanner() {
-  const [data, setData] = useState("No result");
+import BarcodeScannerComponent from "react-qr-barcode-scanner"
 
+export default function BarcodeScanner({ onScan }) {
   return (
-    <div style={{ background: "#fff", padding: "12px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
-      <h4 style={{ marginBottom: "8px", fontWeight: "bold" }}>Barcode Scanner</h4>
+    <div className="bg-black border border-gray-800 rounded-lg p-3">
+      <p className="text-xs text-gray-400 mb-2 font-semibold uppercase">
+        Scan NV ID
+      </p>
+
       <BarcodeScannerComponent
-        width={220}
-        height={160}
+        width={240}
+        height={180}
         onUpdate={(err, result) => {
-          if (result) setData(result.text);
+          if (result?.text) {
+            onScan(result.text.trim())
+          }
         }}
       />
-      <div style={{ marginTop: "8px", fontSize: "0.95em" }}>
-        <strong>Result:</strong> {data}
-      </div>
     </div>
-  );
+  )
 }

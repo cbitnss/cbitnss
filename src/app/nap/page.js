@@ -1,119 +1,73 @@
+"use client"
 
-"use client";
+import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
+import { VolunteerNAPTable } from "@/components/NAPTable"
 
-import React, { useState, useEffect } from "react";
-import { VolunteerNAPTable } from "@/components/NAPTable";
-import BarcodeScannerComponent from "react-qr-barcode-scanner";
-
-// Example dataset with barcodes
-const dataset = {
-  "123456789": { name: "John Doe", email: "john@example.com" },
-  "987654321": { name: "Jane Smith", email: "jane@example.com" },
-};
+const BarcodeScanner = dynamic(
+  () => import("@/components/BarcodeScanner"),
+  { ssr: false }
+)
 
 export default function NapPage() {
-  const [showScanner, setShowScanner] = useState(false);
-  const [scannedData, setScannedData] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResult, setSearchResult] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
+  const [showScanner, setShowScanner] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    const check = () => setIsMobile(window.innerWidth <= 768)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const handleSearch = () => {
-    const result = Object.values(dataset).find(
-      (entry) =>
-        entry.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        entry.email.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setSearchResult(result || { error: "No matching record found" });
-  };
+  const handleScan = (nvId) => {
+    setSearchValue(nvId)
+    setShowScanner(false)
+  }
 
   return (
-    <div className="min-h-screen bg-white relative pt-4">
-      {/* Scanner Button (red) - only on mobile */}
-      {isMobile && (
-        <div className="flex justify-end mr-6 mb-4">
-          <button
-            className="px-4 py-2 bg-red-600 text-white rounded shadow hover:bg-red-700 transition"
-            onClick={() => setShowScanner((prev) => !prev)}
-          >
-            Scanner
-          </button>
-        </div>
-      )}
+    <div className="relative">
+      {/* HEADER + SEARCH */}
+      <div className="max-w-7xl mx-auto px-6 pt-12 pb-3">
+        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
+          Volunteer <span className="text-blue-600">Leaderboard</span>
+        </h1>
 
-      {/* Barcode Scanner Popup */}
-      {showScanner && (
-        <div className="absolute top-20 right-6 z-[9999] bg-white rounded shadow-lg p-4 border border-gray-200">
-          <BarcodeScannerComponent
-            onUpdate={(err, result) => {
-              if (result) {
-                const data = dataset[result.text];
-                setScannedData(data || { error: "Barcode not found" });
-                setShowScanner(false);
-              }
-            }}
-            style={{ width: 300 }}
+        <p className="mt-1 text-gray-500 text-sm md:text-base">
+          Tracking the dedication of our NSS volunteers.
+        </p>
+
+        {/* Instant Search */}
+        <div className="mt-3">
+          <input
+            type="text"
+            placeholder="Search by NV ID or Roll Number"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className="w-full sm:w-96 bg-transparent border-b border-gray-800 text-white px-0 py-2 text-base focus:outline-none focus:border-blue-500 placeholder:text-gray-600"
           />
         </div>
-      )}
-
-      {/* Display scanned data */}
-      {scannedData && (
-        <div className="p-4 bg-gray-100 rounded shadow m-6">
-          {scannedData.error ? (
-            <p className="text-red-500">{scannedData.error}</p>
-          ) : (
-            <>
-              <p><strong>Name:</strong> {scannedData.name}</p>
-              <p><strong>Email:</strong> {scannedData.email}</p>
-            </>
-          )}
-        </div>
-      )}
-
-      {/* Search Bar */}
-      <div className="flex items-center gap-2 px-6 mb-4">
-        <input
-          type="text"
-          placeholder="Search by name or email"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded w-full"
-        />
-        <button
-          onClick={handleSearch}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-        >
-          Search
-        </button>
       </div>
 
-      {/* Main Table */}
-      <VolunteerNAPTable />
+      {/* Mobile Scanner */}
+      {isMobile && (
+        <button
+          onClick={() => setShowScanner(true)}
+          className="fixed bottom-6 right-6 z-50 bg-red-600 text-white px-5 py-3 text-sm font-bold rounded-full shadow-lg"
+        >
+          SCAN
+        </button>
+      )}
 
-      {/* Display search result */}
-      {searchResult && (
-        <div className="p-4 bg-gray-100 rounded shadow m-6">
-          {searchResult.error ? (
-            <p className="text-red-500">{searchResult.error}</p>
-          ) : (
-            <>
-              <p><strong>Name:</strong> {searchResult.name}</p>
-              <p><strong>Email:</strong> {searchResult.email}</p>
-            </>
-          )}
+      {showScanner && (
+        <div className="fixed bottom-20 right-6 z-[9999]">
+          <BarcodeScanner onScan={handleScan} />
         </div>
       )}
+
+      {/* TABLE */}
+      <VolunteerNAPTable searchValue={searchValue} />
     </div>
-  );
+  )
 }
