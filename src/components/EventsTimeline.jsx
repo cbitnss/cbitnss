@@ -115,6 +115,7 @@ const EVENTS = [
   {
     id: "16",
     title: "YUVA — National Youth Contest",
+    certificateUrl: "https://drive.google.com/drive/folders/1_nrtAadXdIIVKLdZTaX_Z2_R7kbTIepE", // Add the actual link from certificates page
     description:
       "YUVA 2025 united talented youth from across India in a national-level contest celebrating leadership, creativity, and social impact. Through debates, cultural performances, tech challenges, and a village immersion to identify local issues and propose solutions, participants showcased their skills and potential. NSS managed the event with energy and dedication, while the final round was judged by Manoj Khanna (NSS National President Medal awardee), Aneboina Nikhil (Founder of NSS Yuva), and Yamini Arlibandi (National-level State Cultural Representative). YUVA 2025 was a vibrant platform for expression, collaboration, and turning ideas into action.",
     images: ["/yuva1.jpg", "/yuva2.jpg", "/yuva3.jpg"]
@@ -122,6 +123,7 @@ const EVENTS = [
   {
     id: "17",
     title: "Village Camp — Community Connection",
+    certificateUrl: "https://drive.google.com/drive/folders/1tHAFFCZOrYf8PLIx1ghGxaDMM-mMScDU", // Add the actual link from certificates page
     description:
       "From 19 to 21 December 2024, CBITNSS embarked on a transformative 3-day Village Camp in Chinna Shahpur, bringing health, education, and hope to the community. The program featured free medical checkups, hygiene awareness sessions, and fun, educational activities for local children. Beyond the services, students immersed themselves in village life—conducting surveys, interacting with schoolchildren, and understanding the challenges faced by the residents. Group activities fostered genuine connections between students and villagers, turning every interaction into a shared learning experience. The camp was more than outreach—it was a journey of empathy, service, and inspiring a brighter, healthier tomorrow.",
     images: ["/vcamp1.jpg", "/vcamp2.jpg", "/vcamp3.jpg"]
@@ -451,8 +453,23 @@ export default function EventsTimeline() {
                   <article className="relative group">
                     <div className="relative z-10 flex flex-col gap-4">
                       <div className="flex-1">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 uppercase tracking-wide leading-none">{ev.title}</h2>
-                        <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light max-w-4xl">{ev.description}</p>
+                        <div className="flex items-center gap-4 flex-wrap">
+                          <h2 className="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-wide leading-none">{ev.title}</h2>
+                          {ev.certificateUrl && (
+                            <a
+                              href={ev.certificateUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-blue-500/50"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              Certificate
+                            </a>
+                          )}
+                        </div>
+                        <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light max-w-4xl mt-6">{ev.description}</p>
                       </div>
                       <ImageCarousel images={ev.images} />
                     </div>

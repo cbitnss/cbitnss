@@ -3,6 +3,7 @@ import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import FeaturingSection from "@/components/FeaturingSection";
 import { ExecutiveBoard } from "@/components/ExecutiveBoard";
+import { TopVolunteers } from "@/components/TopVolunteers";
 import DomeGallery from "@/components/ui/DomeGallery";
 import RecentEventsSection from '@/components/RecentEventsSection';
 
@@ -14,9 +15,9 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      {/* Dome gallery — make it a normal section in the flow so it can't overlap neighbors */}
-      <section className="page-section relative z-0 min-h-screen">
-        <DomeGallery />
+      {/* Top 5 Volunteers Section */}
+      <section className="page-section relative z-0 py-8">
+        <TopVolunteers />
       </section>
 
       {/* Recent events — ensure it has its own section and some safe padding so headings/buttons are never cut off */}

@@ -26,9 +26,8 @@ export default function App() {
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Activities", href: "/events" },
-    { name: "Certificates", href: "/certificates" },
     { name: "NAP", href: "/nap" },
-    { name: "Lost & Found", href: "/lost-found" },
+    // { name: "Lost & Found", href: "/lost-found" }, // Hidden for now
     { name: "Executive Board", href: "/team" },
     { name: "Blood Donation Hub", href: "/emergency" },
   ];
