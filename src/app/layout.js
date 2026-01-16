@@ -32,7 +32,11 @@ export default function RootLayout({ children }) {
 
         {/* 2. APP CONTENT: Sits on top (z-10) */}
         <NextUIProvider>
-          <div className="relative z-10 flex flex-col min-h-screen">
+          <div
+            id="app-scroll-container"
+            className="relative z-10 flex flex-col min-h-screen"
+          >
+
             <App /> 
             <main className="flex-1 pt-16">
               {children}
