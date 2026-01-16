@@ -8,7 +8,26 @@ export default function HeroSection() {
   const router = useRouter();
 
   return (
-    <section className="hero-section relative overflow-hidden h-screen flex items-center border-0 outline-none">
+    <section
+      className="hero-section relative overflow-hidden h-screen w-full flex items-center"
+      style={{ marginTop: 0, paddingTop: 0 }}
+    >
+      {/* Remove any global top spacing */}
+      <style jsx global>{`
+        html, body, #__next {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        main {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+        }
+        .hero-section {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+        }
+      `}</style>
+
       {/* full-bleed background image */}
       <div className="absolute inset-0 z-0 border-0" aria-hidden>
         <Image
