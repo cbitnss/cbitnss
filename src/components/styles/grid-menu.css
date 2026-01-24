@@ -1,0 +1,269 @@
+/* Merged styles from Dropbox Brand Guidelines reference */
+
+:root {
+  /* Dimensions */
+  --button-size: 90px;
+  --nav-tile-gap: 10px;
+  --tile-transition: 0.35s cubic-bezier(.4, 0, .2, 1);
+  --nav-easing: cubic-bezier(.4, 0, .2, 1);
+  --nav-easing-swoop: cubic-bezier(.6, 0, 0, 1);
+
+  /* Calculated Grid Variables (Desktop default) */
+  --opening-margin: 120px;
+  --opening-gutter: 24px;
+  --opening-total-margins: calc(2 * var(--opening-margin));
+  --opening-total-gutters: calc(11 * var(--opening-gutter));
+  --opening-grid-width: calc(100vw - var(--opening-total-margins));
+  --opening-single-column: calc((var(--opening-grid-width) - var(--opening-total-gutters)) / 12);
+  
+  --opening-col-1-left: var(--opening-margin);
+  --opening-col-2-left: calc(var(--opening-margin) + 1 * (var(--opening-single-column) + var(--opening-gutter)));
+
+  /* Colors (Inferred/Approximated for Dropbox Brand) */
+  --accent--tab: #0061FE; /* Dropbox Blue */
+  --text--base: #1E1919;
+  --surface--background-dark: #1E1919;
+  
+  --color--identity--blue: #0061FE;
+  --color--identity--on-blue: #FFFFFF;
+  
+  --color--identity--yellow: #FAAF3F; /* Sharp */
+  --color--identity--on-yellow: #1E1919;
+  
+  --color--identity--red: #FF4A4A;
+  --color--identity--on-red: #FFFFFF;
+  
+  --color--identity--orange: #FF7F3F; /* Sharp */
+  --color--identity--on-orange: #1E1919;
+  
+  --color--identity--pink: #FFC0CB;
+  --color--identity--on-pink: #1E1919;
+  
+  --color--identity--purple: #8F4AFF;
+  --color--identity--on-purple: #FFFFFF;
+  
+  --color--identity--green: #00D084;
+  --color--identity--on-green: #1E1919;
+  
+  --color--identity--cyan: #00D0FF; /* Sharp */
+  --color--identity--on-cyan: #1E1919;
+
+  --color--accent--rust: #9B3A1C;
+  --color--accent--azalea: #F7C5CC;
+  --color--accent--pink: #F7C5CC;
+  
+  --color--accent--line-solid: rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 991px) {
+  :root {
+    --button-size: 64px;
+    --nav-tile-gap: 5px;
+    --opening-margin: 60px;
+    --opening-gutter: 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --opening-margin: 32px;
+  }
+}
+
+/* Reset & Basics */
+.grid-menu-container * {
+  box-sizing: border-box;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.grid-menu-container body {
+  overscroll-behavior: none;
+}
+
+/* Typography Overrides */
+.grid-menu-container h1, .grid-menu-container h2, .grid-menu-container h3 {
+  margin: 0;
+  padding: 0;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.tile-title {
+  font-size: 36px;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+@media (max-width: 991px) {
+  .tile-title {
+    font-size: 20px;
+  }
+}
+
+/* Nav Container */
+.nav-container {
+  position: relative;
+  width: 100%;
+  min-height: 250vh; /* Scrollable area */
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  pointer-events: none;
+  
+  /* CSS Grid Layout for the tiles */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Tiles */
+.nav-tile {
+  position: relative; /* Grid interaction */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  pointer-events: auto;
+  /* Remove fixed centering to let Grid handle layout */
+  top: auto;
+  left: auto;
+  margin: 0;
+}
+
+.nav-tile .tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border-radius: 4px; /* Optional rounded corners */
+}
+
+/* Specific Grid Positions (3x3)
+   1 2 3
+   4 . 5
+   6 7 8
+*/
+.nav-tile-1 { grid-column: 1; grid-row: 1; }
+.nav-tile-2 { grid-column: 2; grid-row: 1; }
+.nav-tile-3 { grid-column: 3; grid-row: 1; }
+.nav-tile-4 { grid-column: 1; grid-row: 2; }
+.nav-tile-5 { grid-column: 3; grid-row: 2; }
+.nav-tile-6 { grid-column: 1; grid-row: 3; }
+.nav-tile-7 { grid-column: 2; grid-row: 3; }
+.nav-tile-8 { grid-column: 3; grid-row: 3; }
+
+/* Responsive adjustments for mobile (2 columns) */
+@media screen and (max-width: 768px) {
+  .nav {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    /* 
+      1 2
+      3 4
+      . . (Center hole in middle row?)
+      5 6
+      7 8
+    */
+  }
+  
+  /* Reset and reorder */
+  .nav-tile-1 { grid-column: 1; grid-row: 1; }
+  .nav-tile-2 { grid-column: 2; grid-row: 1; }
+  .nav-tile-3 { grid-column: 1; grid-row: 2; }
+  .nav-tile-4 { grid-column: 2; grid-row: 2; }
+  /* Row 3 is empty/center */
+  .nav-tile-5 { grid-column: 1; grid-row: 3; }
+  .nav-tile-6 { grid-column: 2; grid-row: 3; }
+  .nav-tile-7 { grid-column: 1; grid-row: 4; }
+  .nav-tile-8 { grid-column: 2; grid-row: 4; }
+}
+
+/* Menu Button (Central) */
+.menu {
+  position: fixed; /* Keep it fixed in viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 60;
+  pointer-events: none;
+}
+
+
+.nav-button {
+  width: var(--button-size);
+  height: var(--button-size);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Intro Animations */
+.menu .tile-line {
+  position: absolute;
+  background-color: var(--accent--tab);
+  transition: transform 1s ease;
+}
+.menu .tile-line.nav-l, .menu .tile-line.nav-r { width: 1px; height: 100vh; top: 0; }
+.menu .tile-line.nav-t, .menu .tile-line.nav-b { height: 1px; width: 100vw; left: 0; }
+.menu .tile-line.nav-l { left: 0; }
+.menu .tile-line.nav-r { right: 0; }
+.menu .tile-line.nav-t { top: 0; }
+.menu .tile-line.nav-b { bottom: 0; }
+
+/* Styles for specific tiles (simplified for portability) */
+
+/* Strategy (Framework) */
+.tile.strategy .bezier-point {
+  fill: var(--color--identity--blue);
+}
+.strategy-bezier-path path {
+  stroke: var(--color--identity--blue);
+  fill: none;
+  stroke-width: 2px;
+}
+
+/* Voice & Tone */
+.voice-tone-quotation-mark {
+  fill: var(--color--identity--on-yellow);
+}
+
+/* Logo */
+.home-logo {
+  width: 100%; height: 100%;
+}
+.home-logo path {
+   fill: currentColor;
+}
+
+/* Scroll Chevrons */
+.scroll-chevrons {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Specific Positions for Grid (applied by JS usually, but defaults here) */
+/* Actually the JS sets transform: translate(...) */
+
+/* Utility */
+.hidden { display: none; }
