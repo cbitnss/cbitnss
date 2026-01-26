@@ -1,0 +1,236 @@
+/* ScrollExpandGrid Styles - Strict CSS Grid Layout */
+
+/* Grid Items */
+.grid-item {
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transform-origin: center;
+  will-change: transform, opacity;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+.grid-item:hover .grid-item-content {
+  transform: scale(1.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.grid-item-icon {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grid-item-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.grid-item:hover .grid-item-content::before {
+  opacity: 1;
+}
+
+/* Logo Wrapper - Central Fixed Position */
+.logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 97, 254, 0.2);
+  border: 2px solid rgba(0, 97, 254, 0.3);
+}
+
+.logo-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.logo-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(0, 97, 254, 0.4);
+}
+
+.logo-button:focus {
+  outline: none;
+}
+
+.logo-button svg {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.logo-button:hover svg {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Hero Overlay */
+.hero-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  overflow-y: auto;
+  background: #000000;
+}
+
+.hero-overlay > div {
+  position: relative;
+  z-index: 50;
+}
+
+/* Responsive Grid */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    height: 70vh;
+  }
+
+  .grid-item-icon {
+    font-size: 36px;
+  }
+
+  .grid-item-title {
+    font-size: 14px;
+  }
+
+  .logo-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-button svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    height: 60vh;
+    width: 95%;
+  }
+
+  .grid-item {
+    border-radius: 8px;
+  }
+
+  .grid-item-icon {
+    font-size: 28px;
+  }
+
+  .grid-item-title {
+    font-size: 12px;
+  }
+
+  .logo-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo-button svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    height: 55vh;
+  }
+
+  .grid-item-icon {
+    font-size: 24px;
+  }
+
+  .grid-item-title {
+    font-size: 11px;
+  }
+
+  .logo-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .logo-button svg {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Accessibility */
+.grid-item:focus-visible {
+  outline: 2px solid #0061fe;
+  outline-offset: 2px;
+}
+
+.logo-button:focus-visible {
+  outline: 2px solid #0061fe;
+  outline-offset: 4px;
+  border-radius: 50%;
+}

@@ -1,227 +1,171 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-
-// ------------------------------
-// CONFIG
-// ------------------------------
+import { useEffect, useRef } from "react"
 
 const HERO_IMAGES = [
   { src: "/arang2.jpg", title: "Arangetra" },
   { src: "/sum2.jpg", title: "NSS Summit" },
   { src: "/sis2.JPG", title: "Strength in Solidarity" },
   { src: "/santa2.jpg", title: "Be My Santa" },
-  { src: "/bd2.jpg", title: "Blood Donation" },
+  { src: "/bd1.jpg", title: "Blood Donation" },
 ]
 
-// virtual scroll distance used ONLY for animation
-const SCROLL_HEIGHT_PX = 4000
-
-// inertia strength (lower = heavier)
-const INERTIA = 0.08
-
-// overlap between cards (0.0 = no overlap, 0.3 = strong overlap)
-const OVERLAP = 0.35
-
-// ------------------------------
-// EASING (matches reference feel)
-// ------------------------------
+const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v))
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
 
-// ------------------------------
-
 export default function HacksmithStickySection() {
-  const containerRef = useRef(null)
-
-  const [scrollState, setScrollState] = useState("before")
-  const [progress, setProgress] = useState(0)
-
-  // inertia refs
-  const targetProgress = useRef(0)
-  const smoothProgress = useRef(0)
-  const startScroll = useRef(null)
+  const sectionRef = useRef(null)
+  const pinRef = useRef(null)
+  const progressRef = useRef(0)
   const rafRef = useRef(null)
+  const doneRef = useRef(false)
 
-  // ------------------------------
-  // SCROLL → TARGET PROGRESS
-  // ------------------------------
+  // --------------------------------------
+  // Scroll → smooth progress
+  // --------------------------------------
   useEffect(() => {
     const onScroll = () => {
-      if (!containerRef.current) return
+      if (!sectionRef.current || doneRef.current) return
 
-      const rect = containerRef.current.getBoundingClientRect()
+      const rect = sectionRef.current.getBoundingClientRect()
+      const total = rect.height - window.innerHeight
+      const raw = clamp(-rect.top / total)
 
-      // before pin
-      if (rect.top > 0) {
-        setScrollState("before")
-        targetProgress.current = 0
-        startScroll.current = null
-        return
+      progressRef.current += (raw - progressRef.current) * 0.12
+
+      if (progressRef.current >= 0.999) {
+        progressRef.current = 1
+        doneRef.current = true
       }
+    }
 
-      if (startScroll.current === null) {
-        startScroll.current = window.scrollY
-      }
-
-      const delta = window.scrollY - startScroll.current
-      const p = delta / SCROLL_HEIGHT_PX
-
-      if (p < 1) {
-        setScrollState("fixed")
-        targetProgress.current = Math.max(0, Math.min(1, p))
-      } else {
-        setScrollState("after")
-        targetProgress.current = 1
-      }
+    const loop = () => {
+      updateImages()
+      rafRef.current = requestAnimationFrame(loop)
     }
 
     window.addEventListener("scroll", onScroll, { passive: true })
-    onScroll()
+    rafRef.current = requestAnimationFrame(loop)
 
-    return () => window.removeEventListener("scroll", onScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      cancelAnimationFrame(rafRef.current)
+    }
   }, [])
 
-  // ------------------------------
-  // INERTIA / MOMENTUM LOOP
-  // ------------------------------
-  useEffect(() => {
-    const animate = () => {
-      smoothProgress.current +=
-        (targetProgress.current - smoothProgress.current) * INERTIA
+  // --------------------------------------
+  // Update images + pin logic
+  // --------------------------------------
+  const updateImages = () => {
+    const p = progressRef.current
 
-      setProgress(smoothProgress.current)
-
-      rafRef.current = requestAnimationFrame(animate)
+    // PIN / UNPIN EXACTLY
+    if (pinRef.current) {
+      if (p < 1) {
+        pinRef.current.style.position = "fixed"
+        pinRef.current.style.top = "0"
+        pinRef.current.style.left = "0"
+        pinRef.current.style.width = "100%"
+      } else {
+        pinRef.current.style.position = "sticky"
+      }
     }
 
-    rafRef.current = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [])
+    HERO_IMAGES.forEach((_, i) => {
+      const el = document.getElementById(`hero-card-${i}`)
+      if (!el) return
 
-  // ------------------------------
-  // IMAGE ANIMATION
-  // ------------------------------
-  const getImageStyle = (index) => {
-    const total = HERO_IMAGES.length
+      const total = HERO_IMAGES.length
+      const overlap = 0.35
+      const step = 1 / (total - (total - 1) * overlap)
+      const start = i * step * (1 - overlap)
+      const end = start + step
 
-    // overlapping ranges
-    const step = 1 / (total - (total - 1) * OVERLAP)
-    const start = index * step * (1 - OVERLAP)
-    const end = start + step
+      let t = clamp((p - start) / (end - start))
+      const eased = easeOutCubic(t)
 
-    let t = (progress - start) / (end - start)
-    t = Math.max(0, Math.min(1, t))
+      const y = (1 - eased) * 60
+      const scale = 1.12 - eased * 0.12
+      const rot = (i % 2 === 0 ? -1 : 1) * 3
 
-    // easing
-    const e = easeOutCubic(t)
-
-    const scale = 2.4 - e * 1.4
-    const y = (1 - e) * 120
-    const opacity = e
-
-    const finalRot = (index % 2 === 0 ? -1 : 1) * (6 + index * 4)
-    const startRot = finalRot * 3
-    const rot = startRot + (finalRot - startRot) * e
-
-    return {
-      opacity,
-      transform: `translate(-50%, -50%) translateY(${y}px) rotate(${rot}deg) scale(${scale})`,
-      zIndex: 10 + index,
-    }
+      el.style.opacity = eased
+      el.style.transform = `
+        translate(-50%, -50%)
+        translateY(${y}px)
+        rotate(${rot}deg)
+        scale(${scale})
+      `
+      el.style.zIndex = 10 + i
+    })
   }
 
-  // ------------------------------
-  // CONTAINER POSITION
-  // ------------------------------
-  let containerStyle = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100vh",
-  }
-
-  if (scrollState === "fixed") {
-    containerStyle.position = "fixed"
-  }
-
-  if (scrollState === "after") {
-    containerStyle = {
-      position: "absolute",
-      top: SCROLL_HEIGHT_PX,
-      left: 0,
-      width: "100%",
-      height: "100vh",
-    }
-  }
-
-  // ------------------------------
-  // RENDER
-  // ------------------------------
   return (
-    <div className="bg-black relative w-full">
+    <section
+      ref={sectionRef}
+      className="relative bg-black"
+      style={{ height: "500vh" }}
+    >
       <div
-        ref={containerRef}
-        className="relative w-full"
-        style={{ height: `${SCROLL_HEIGHT_PX}px` }}
+        ref={pinRef}
+        className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center"
       >
-        <div
-          className="overflow-hidden flex items-center justify-center"
-          style={containerStyle}
-        >
-          {/* Background Text */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <h1
-              className="text-white font-black tracking-tighter"
+        {/* Background text */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <h1
+            className="text-white font-black tracking-tighter"
+            style={{
+              fontSize: "clamp(4rem, 20vw, 15rem)",
+              opacity: 0.85,
+              textShadow: "0 0 40px rgba(255,255,255,0.12)",
+            }}
+          >
+            CBIT NSS
+          </h1>
+        </div>
+
+        {/* Cards */}
+        <div className="relative w-full h-full max-w-[1200px] mx-auto z-10">
+          {HERO_IMAGES.map((img, i) => (
+            <div
+              key={i}
+              id={`hero-card-${i}`}
+              className="absolute top-1/2 left-1/2 will-change-transform"
               style={{
-                fontSize: "clamp(4rem, 20vw, 15rem)",
-                opacity: 0.85,
-                textShadow: "0 0 40px rgba(255,255,255,0.12)",
+                width: "360px",
+                height: "520px",
+                opacity: 0,
+                transform:
+                  "translate(-50%, -50%) translateY(120px) scale(1.12)",
               }}
             >
-              CBIT NSS
-            </h1>
-          </div>
-
-          {/* Images */}
-          <div className="relative w-full h-full max-w-[1200px] mx-auto z-10">
-            {HERO_IMAGES.map((img, i) => {
-              const s = getImageStyle(i)
-              return (
+              {/* CARD */}
+              <div className="w-full h-full bg-white border border-gray-300 shadow-2xl shadow-black/70 flex flex-col">
+                
+                {/* IMAGE AREA (controlled crop, no white gaps) */}
                 <div
-                  key={i}
-                  className="absolute top-1/2 left-1/2 w-[300px] md:w-[400px] aspect-[3/4] will-change-transform"
-                  style={{
-                    opacity: s.opacity,
-                    transform: s.transform,
-                    zIndex: s.zIndex,
-                  }}
+                  className="w-full"
+                  style={{ height: "440px", overflow: "hidden" }}
                 >
-                  <div className="w-full h-full bg-white p-3 pb-12 shadow-2xl shadow-black/80">
-                    <div className="w-full h-full overflow-hidden bg-gray-200">
-                      <img
-                        src={img.src}
-                        alt={img.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="absolute bottom-4 left-0 w-full text-center">
-                      <p className="text-gray-800 text-lg font-bold opacity-80 rotate-[-1deg]">
-                        {img.title}
-                      </p>
-                    </div>
-                  </div>
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    className="w-full h-full object-cover object-center"
+                    draggable={false}
+                  />
                 </div>
-              )
-            })}
-          </div>
+
+                {/* TITLE */}
+                <div className="h-[80px] flex items-center justify-center border-t border-gray-300">
+                  <p className="text-gray-800 font-semibold text-base text-center px-2">
+                    {img.title}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
-      {/* Next Section */}
-      <div className="h-screen bg-neutral-900 flex items-center justify-center text-white border-t border-white/10">
-        Scroll continues here…
-      </div>
-    </div>
+    </section>
   )
 }

@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import HacksmithStickySection from "./hacksmith-sticky-section";
 
 // UPDATED EVENTS
 const EVENTS = [
@@ -82,7 +83,7 @@ const EVENTS = [
     title: "Euphoria ",
     description:
       "Brimming with warmth and youthful exuberance, Euphoria unfolded as a graceful celebration, honouring the Executive Board of 2023–2024. The seniors who steered the team with dedication were fondly acknowledged for their guidance and commitment. The evening sparkled with lively moments, cheerful camaraderie, and spirited dancing. With the esteemed faculty gracing the occasion, Euphoria became a truly memorable gathering filled with gratitude, joy, and festive charm",
-    images: ["/Euphoria1.jpg", "/Euphoria2.jpg","/Euphoria3.jpg","/Euphoria4.jpg","/Euphoria5.jpg"]
+    images: ["/Euphoria1.jpg", "/Euphoria2.jpg", "/Euphoria3.jpg", "/Euphoria4.jpg", "/Euphoria5.jpg"]
   },
   {
     id: "12",
@@ -220,127 +221,6 @@ const HERO_IMAGES = [
   { src: '/santa2.jpg', title: 'Be My Santa' },
   { src: '/bd2.jpg', title: 'Blood Donation' }
 ];
-
-// Hacksmith-style Sticky Scroll Section
-function HacksmithStickySection() {
-  const sectionRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionHeight = rect.height;
-      
-      // Progress from when section enters to when it leaves
-      if (rect.top <= 0 && rect.bottom >= windowHeight) {
-        const progress = Math.abs(rect.top) / (sectionHeight - windowHeight);
-        setScrollProgress(Math.max(0, Math.min(1, progress)));
-      } else if (rect.bottom < windowHeight) {
-        setScrollProgress(1);
-      } else {
-        setScrollProgress(0);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const getImageTransform = (index) => {
-    const totalImages = HERO_IMAGES.length;
-    const imageStart = index / totalImages;
-    const imageEnd = (index + 1) / totalImages;
-    
-    if (scrollProgress < imageStart) {
-      return { opacity: 0, scale: 0.3, translateY: 100 };
-    } else if (scrollProgress >= imageStart && scrollProgress <= imageEnd) {
-      const localProgress = (scrollProgress - imageStart) / (1 / totalImages);
-      return {
-        opacity: localProgress,
-        scale: 0.3 + (localProgress * 0.7),
-        translateY: (1 - localProgress) * 100
-      };
-    } else {
-      return { opacity: 1, scale: 1, translateY: 0 };
-    }
-  };
-
-  const imagePositions = [
-    { x: -50, y: -30, rotate: -18, z: 10 },
-    { x: 40, y: 20, rotate: 12, z: 20 },
-    { x: -30, y: 25, rotate: -25, z: 30 },
-    { x: 45, y: -20, rotate: 15, z: 40 },
-    { x: -15, y: 10, rotate: -10, z: 50 }
-  ];
-
-  return (
-    <div className="relative bg-black">
-      <div ref={sectionRef} style={{ height: '300vh' }}>
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-          {/* HOLLOW TEXT - STICKY */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <h1 
-              className="font-black leading-none select-none whitespace-nowrap px-4"
-              style={{
-                fontSize: 'clamp(3rem, 16vw, 14rem)',
-                WebkitTextStroke: '4px white',
-                WebkitTextFillColor: 'transparent',
-                color: 'transparent',
-                fontFamily: '"Arial Black", "Arial Bold", Gadget, sans-serif',
-                fontWeight: '900',
-                letterSpacing: '0.05em'
-              }}
-            >
-              CBIT NSS
-            </h1>
-          </div>
-
-          {/* STICKY IMAGES that appear and stack */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="relative" style={{ width: '400px', height: '500px' }}>
-              {HERO_IMAGES.map((img, idx) => {
-                const { opacity, scale, translateY } = getImageTransform(idx);
-                const pos = imagePositions[idx];
-                
-                return (
-                  <div
-                    key={idx}
-                    className="absolute"
-                    style={{
-                      left: '50%',
-                      top: '50%',
-                      zIndex: pos.z,
-                      opacity,
-                      transform: `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px + ${translateY}vh)) rotate(${pos.rotate}deg) scale(${scale})`,
-                      width: '300px',
-                      height: '400px',
-                      willChange: 'transform, opacity'
-                    }}
-                  >
-                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl border-4 border-white">
-                      <img
-                        src={img.src}
-                        alt={img.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
-                        <span className="text-sm font-bold text-white">{img.title}</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // Main Timeline Component
 export default function EventsTimeline() {
